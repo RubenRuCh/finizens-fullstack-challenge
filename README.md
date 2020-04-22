@@ -51,7 +51,7 @@ Then creates a buy order for a new allocation:
 ```
 
 So, now the allocation still is not part of the portfolio *until the order is completed*.
-Then the portfolio should be like:
+Once completed the portfolio should be like:
 ```
 {
   "id": 1,

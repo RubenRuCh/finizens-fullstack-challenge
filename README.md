@@ -1,9 +1,25 @@
 # Finizens' FullStack Challenge
 
+## Instructions
+
+  - Feel free to use the framework, persistence system and third party library you like.
+   As well other tooling.
+   
+  - You will need a GIT client to clone this repository. Once you finish
+  create a patch of your work and send it to us. 
+    - https://thoughtbot.com/blog/send-a-patch-to-someone-using-git-format-patch
+    
+  - You will find the required scenarios on the `features` folder of the project. 
+  These are written in Gherkin language, you can use they as acceptance tests.
+  
+  - Whenever a system **PUT** a portfolio, every related data (allocations and orders)
+    will be deleted.
+
+
 ## Backend
 
 As a robo-advisor in Finizens we manage client's investment portfolios. 
-In order to do this, Customer contracts new portfolios and will trade allocations
+In order to do this, a Customer contracts new portfolios and will trade allocations
 on these portfolios.
 
 The system will create a portfolio with its allocations.
@@ -15,15 +31,9 @@ New allocations can be bought, even if they are present or not on the portfolio.
 Allocations in the portfolio can be sold, if they not exceed the shares of it.
 If an allocation hits 0 shares must be removed from the portfolio.
 
-Whenever a system *PUTs* a portfolio, every related data (allocations and orders)
-will be deleted.
-
 ### Let's see the following scenario
 
-* You can find more scenarios on the `features` folder of the project. These are written on 
-Gherkin language, you can use it as acceptation tests.
-
-The system creates a portfolio: 
+The system creates a portfolio with two allocations: 
 ```
 {
   "id": 1,
@@ -50,7 +60,7 @@ Then creates a buy order for a new allocation:
 }
 ```
 
-So, now the allocation still is not part of the portfolio *until the order is completed*.
+So, now the allocation still is not part of the portfolio **until the order is completed**.
 Once completed the portfolio should be like:
 ```
 {

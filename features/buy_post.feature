@@ -65,8 +65,21 @@ Feature: Create buy orders
     Then the response status code should be 404
     And the response should be empty
 
-  Scenario: Invalid Method
+  Scenario: Buy unknown portfolio
     Given I send a POST request to "/buy" with body:
+    """
+    {
+      "id": 1,
+      "portfolio": 101,
+      "allocation": 1,
+      "shares": 2
+    }
+    """
+    Then the response status code should be 404
+    And the response should be empty
+
+  Scenario: Invalid Method
+    Given I send a PUT request to "/buy" with body:
     Then the response status code should be 405
     And the response should be empty
 

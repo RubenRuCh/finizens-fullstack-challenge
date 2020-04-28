@@ -110,7 +110,7 @@ Feature: Create sell orders
     And the response should be empty
 
   Scenario: Invalid Method
-    Given I send a POST request to "/sell" with body:
+    Given I send a PUT request to "/sell" with body:
     Then the response status code should be 405
     And the response should be empty
 

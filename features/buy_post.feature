@@ -62,7 +62,7 @@ Feature: Create buy orders
       "shares": 2
     }
     """
-    Then the response status code should be 404
+    Then the response status code should be 200
     And the response should be empty
 
   Scenario: Buy unknown portfolio

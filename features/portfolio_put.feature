@@ -4,18 +4,17 @@ Feature: Create Portfolio
   create new portfolios in our system
 
   Scenario: New valid portfolio
-    Given I send a PUT request to "/portfolio" with body:
+    Given I send a PUT request to "/api/portfolios/1" with body:
     """
     {
-      "id": 1,
       "allocations": [
         {
           "id": 1,
-          "shares" 3
+          "shares": 3
         },
         {
           "id": 2,
-          "shares" 4
+          "shares": 4
         }
       ]
     }
@@ -24,14 +23,13 @@ Feature: Create Portfolio
     And the response should be empty
 
   Scenario: Invalid payload
-    Given I send a PUT request to "/portfolio" with body:
+    Given I send a PUT request to "/api/portfolios/1" with body:
     """
     {
-      "id": 1,
       "allocations": [
         {
           "id": 1,
-          "shares" 3
+          "shares": 3
         },
         {
           "id": 2
@@ -43,6 +41,6 @@ Feature: Create Portfolio
     And the response should be empty
 
   Scenario: Invalid Method
-    Given I send a PATCH request to "/portfolio" with body:
+    Given I send a PATCH request to "/api/portfolios/1" with body:
     Then the response status code should be 405
     And the response should be empty

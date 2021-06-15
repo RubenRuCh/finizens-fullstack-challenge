@@ -40,11 +40,11 @@ The system creates a portfolio with two allocations:
   "allocations": [
     {
       "id": 1,
-      "shares" 3
+      "shares": 3
     },
     {
       "id": 2,
-      "shares" 4
+      "shares": 4
     }
   ]
 }
@@ -56,7 +56,8 @@ Then creates a buy order for a new allocation:
   "id": 1,
   "portfolio": 1,
   "allocation": 3,
-  "shares": 3
+  "shares": 3,
+  "type": "buy"
 }
 ```
 
@@ -68,15 +69,15 @@ Once completed the portfolio should be like:
   "allocations": [
     {
       "id": 1,
-      "shares" 3
+      "shares": 3
     },
     {
       "id": 2,
-      "shares" 4
+      "shares": 4
     },
     {
       "id": 3,
-      "shares" 3
+      "shares": 3
     },
   ]
 }

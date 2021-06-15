@@ -4,87 +4,88 @@ Feature: Create buy orders
   remove allocations in our system
 
   Scenario: buy more shares on allocation
-    Given I send a PUT request to "/portfolio" with body:
+    Given I send a PUT request to "/api/portfolios/1" with body:
     """
     {
-      "id": 1,
       "allocations": [
         {
           "id": 1,
-          "shares" 3
+          "shares": 3
         },
         {
           "id": 2,
-          "shares" 4
+          "shares": 4
         }
       ]
     }
     """
     And the response status code should be 200
     And the response should be empty
-    When I send a POST request to "/buy" with body:
+    When I send a POST request to "/api/orders" with body:
     """
     {
       "id": 1,
       "portfolio": 1,
       "allocation": 1,
-      "shares": 3
+      "shares": 3,
+      "type": "buy"
     }
     """
     Then the response status code should be 200
     And the response should be empty
 
   Scenario: buy a new allocation
-    Given I send a PUT request to "/portfolio" with body:
+    Given I send a PUT request to "/api/portfolios/1" with body:
     """
     {
-      "id": 1,
       "allocations": [
         {
           "id": 1,
-          "shares" 3
+          "shares": 3
         },
         {
           "id": 2,
-          "shares" 4
+          "shares": 4
         }
       ]
     }
     """
     And the response status code should be 200
     And the response should be empty
-    When I send a POST request to "/buy" with body:
+    When I send a POST request to "/api/orders" with body:
     """
     {
       "id": 1,
       "portfolio": 1,
       "allocation": 3,
-      "shares": 2
+      "shares": 2,
+      "type": "buy"
     }
     """
-    Then the response status code should be 404
+    Then the response status code should be 200
     And the response should be empty
 
   Scenario: Buy unknown portfolio
-    Given I send a POST request to "/buy" with body:
+    Given I send a POST request to "/api/orders" with body:
     """
     {
       "id": 1,
       "portfolio": 101,
       "allocation": 1,
-      "shares": 2
+      "shares": 2,
+      "type": "buy"
     }
     """
     Then the response status code should be 404
     And the response should be empty
 
   Scenario: Invalid Method
-    Given I send a PUT request to "/buy" with body:
+    Given I send a PUT request to "/api/orders" with body:
     Then the response status code should be 405
     And the response should be empty
 
   Scenario: buy invalid payload payload
-    Given I send a POST request to "/buy" with body:
+    Given I send a POST request to "/api/orders" with body:
     """
     {
       "id": 1

@@ -4,65 +4,60 @@ Feature: Complete an active order
   to complete orders created
 
   Scenario: Complete a buy order
-    Given I send a PUT request to "/portfolio" with body:
+    Given I send a PUT request to "/api/portfolios/1" with body:
     """
     {
-      "id": 1,
       "allocations": [
         {
           "id": 1,
-          "shares" 3
+          "shares": 3
         },
         {
           "id": 2,
-          "shares" 4
+          "shares": 4
         }
       ]
     }
     """
     And the response status code should be 200
     And the response should be empty
-    And I send a POST request to "/buy" with body:
+    And I send a POST request to "/api/orders" with body:
     """
     {
       "id": 1,
       "portfolio": 1,
       "allocation": 1,
-      "shares": 3
+      "shares": 3,
+      "type": "buy"
     }
     """
     And the response status code should be 200
     And the response should be empty
-    When I send a POST request to "/complete" with body:
+    When I send a PATCH request to "/api/orders/1" with body:
     """
     {
-      "id": 1
+      "status": "completed"
     }
     """
     And the response status code should be 200
     And the response should be empty
 
   Scenario: A unknown order
-    Given I send a POST request to "/complete" with body:
+    Given I send a PATCH request to "/api/orders/401" with body:
     """
     {
-      "id": 401
+      "status": "completed"
     }
     """
     And the response status code should be 404
     And the response should be empty
 
   Scenario: Invalid Method
-    Given I send a PUT request to "/complete" with body:
+    Given I send a DELETE request to "/api/orders/1" with body:
     Then the response status code should be 405
     And the response should be empty
 
   Scenario: buy invalid payload payload
-    Given I send a POST request to "/complete" with body:
-    """
-    {
-      "id": 1,
-    }
-    """
+    Given I send a PATCH request to "/api/orders/1" with body:
     Then the response status code should be 400
     And the response should be empty

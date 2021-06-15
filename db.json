@@ -1,0 +1,49 @@
+{
+    "portfolios": [
+        {
+            "id": 1,
+            "allocations": [
+                {
+                    "id": 1,
+                    "shares": 3
+                },
+                {
+                    "id": 2,
+                    "shares": 10
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "allocations": [
+                {
+                    "id": 1,
+                    "shares": 2
+                }
+            ]
+        }
+    ],
+    "orders": [
+        {
+            "id": 1,
+            "portfolio": 1,
+            "allocation": 1,
+            "shares": 2,
+            "type": "buy"
+        },
+        {
+            "id": 2,
+            "portfolio": 1,
+            "allocation": 2,
+            "shares": 5,
+            "type": "sell"
+        },
+        {
+            "id": 3,
+            "portfolio": 2,
+            "allocation": 1,
+            "shares": 1,
+            "type": "sell"
+        }
+    ]
+}

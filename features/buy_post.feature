@@ -80,7 +80,7 @@ Feature: Create buy orders
     And the response should be empty
 
   Scenario: Invalid Method
-    Given I send a PUT request to "/api/orders" with body:
+    Given I send a PUT request to "/api/orders"
     Then the response status code should be 405
     And the response should be empty
 

@@ -53,11 +53,11 @@ Feature: Complete an active order
     And the response should be empty
 
   Scenario: Invalid Method
-    Given I send a DELETE request to "/api/orders/1" with body:
+    Given I send a DELETE request to "/api/orders/1"
     Then the response status code should be 405
     And the response should be empty
 
-  Scenario: buy invalid payload payload
-    Given I send a PATCH request to "/api/orders/1" with body:
+  Scenario: buy invalid payload
+    Given I send a PATCH request to "/api/orders/1"
     Then the response status code should be 400
     And the response should be empty

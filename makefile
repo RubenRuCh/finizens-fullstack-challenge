@@ -5,4 +5,5 @@ install:
 	echo "Finished, run 'make start' for starting the mocked server"
 
 start:
+	echo "Launching mocked server, visit http://localhost:3000"
 	cd frontend_server && npm start

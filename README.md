@@ -98,4 +98,4 @@ When the order is completed, the portfolio must be refreshed to update the infor
 In case you'd like to start with the frontend or don't have enough time for completing the backend, you still can focus on the frontend with a simulated API we set up for this challenge:
 * Install it running `make install` from your project's root directory, it should install all the required node dependencies.
 * Run the mocked server with `make start`
-* Check it running at https://localhost:3000
+* Check it running at http://localhost:3000

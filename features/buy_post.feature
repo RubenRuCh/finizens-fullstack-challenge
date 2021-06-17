@@ -31,7 +31,7 @@ Feature: Create buy orders
       "type": "buy"
     }
     """
-    Then the response status code should be 200
+    Then the response status code should be 201
     And the response should be empty
 
   Scenario: buy a new allocation
@@ -62,7 +62,7 @@ Feature: Create buy orders
       "type": "buy"
     }
     """
-    Then the response status code should be 200
+    Then the response status code should be 201
     And the response should be empty
 
   Scenario: Buy unknown portfolio

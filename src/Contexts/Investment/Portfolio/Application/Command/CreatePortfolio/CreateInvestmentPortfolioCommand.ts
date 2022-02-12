@@ -1,14 +1,12 @@
 import { Command } from "../../../../../Shared/Domain/CQRS/Command/Command";
 import { InvestmentAllocationDTO } from "../../../Domain/Model/Allocation/InvestmentAllocationDTO";
-import { InvestmentPortfolioDTO } from "../../../Domain/Model/Portfolio/InvestmentPortfolioDTO";
-
-type Params = InvestmentPortfolioDTO;
+import { CreateInvestmentPortfolioRequest } from "./CreateInvestmentPortfolioRequest";
 
 export class CreateInvestmentPortfolioCommand extends Command {
     id: string;
     allocations: InvestmentAllocationDTO[];
 
-    constructor({ id, allocations }: Params) {
+    constructor({ id, allocations }: CreateInvestmentPortfolioRequest) {
         super();
         this.id = id;
         this.allocations = allocations;

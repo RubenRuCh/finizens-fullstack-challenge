@@ -24,7 +24,7 @@ export class InvestmentPortfolio extends AggregateRoot {
 
     static create(id: InvestmentPortfolioId, allocations: InvestmentAllocation[]): InvestmentPortfolio {
       const portfolio = new InvestmentPortfolio(id, allocations);
-  
+
       portfolio.record(new InvestmentPortfolioCreated({
         portfolio: portfolio.toDTO(),
       }));

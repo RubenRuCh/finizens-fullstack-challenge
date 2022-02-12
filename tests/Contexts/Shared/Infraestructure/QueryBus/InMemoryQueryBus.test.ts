@@ -38,10 +38,10 @@ describe('InMemoryQueryBus', () => {
 
         expect.assertions(2);
         try {
-            await queryBus.ask(unhandledQuery);
+          await queryBus.ask(unhandledQuery);
         } catch (error: any) {
-            expect(error).toBeInstanceOf(QueryNotRegisteredError);
-            expect(error.message).toBe(`The query <UnhandledQuery> hasn't a query handler associated`);
+          expect(error).toBeInstanceOf(QueryNotRegisteredError);
+          expect(error.message).toBe(`The query <UnhandledQuery> hasn't a query handler associated`);
         }
     });
 });

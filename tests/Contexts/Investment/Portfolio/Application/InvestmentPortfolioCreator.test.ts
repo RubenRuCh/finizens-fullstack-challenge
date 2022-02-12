@@ -9,16 +9,16 @@ import { InvestmentPortfolioCleared } from '../../../../../src/Contexts/Investme
 
 let repository: InvestmentPortfolioRepositoryMock;
 let handler: CreateInvestmentPortfolioCommandHandler;
+let eventBus: EventBusMock;
 
-const eventBus = new EventBusMock();
+describe('InvestmentPortfolioCreator', () => {
+  beforeEach(() => {
+    eventBus = new EventBusMock();
+    repository = new InvestmentPortfolioRepositoryMock();
+    const creator = new InvestmentPortfolioCreator(repository, eventBus);
+    handler = new CreateInvestmentPortfolioCommandHandler(creator);
+  });
 
-beforeEach(() => {
-  repository = new InvestmentPortfolioRepositoryMock();
-  const creator = new InvestmentPortfolioCreator(repository, eventBus);
-  handler = new CreateInvestmentPortfolioCommandHandler(creator);
-});
-
-describe('InvestmentPortfolioCreator.test', () => {
   it('should create a valid portfolio', async () => {
     const command = CreateInvestmentPortfolioCommandMother.random();
     const portfolio = InvestmentPortfolioMother.fromCommand(command);

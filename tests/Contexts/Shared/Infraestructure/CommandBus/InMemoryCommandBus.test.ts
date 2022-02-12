@@ -38,11 +38,11 @@ describe('InMemoryCommandBus', () => {
 
         expect.assertions(2);
         try {
-            await commandBus.dispatch(unhandledCommand);
+          await commandBus.dispatch(unhandledCommand);
 
         } catch (error: any) {
-            expect(error).toBeInstanceOf(CommandNotRegisteredError);
-            expect(error.message).toBe(`The command <UnhandledCommand> hasn't a command handler associated`);
+          expect(error).toBeInstanceOf(CommandNotRegisteredError);
+          expect(error.message).toBe(`The command <UnhandledCommand> hasn't a command handler associated`);
         }
     });
 });

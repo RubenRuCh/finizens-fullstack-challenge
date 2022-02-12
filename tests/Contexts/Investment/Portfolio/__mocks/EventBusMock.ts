@@ -26,6 +26,18 @@ export default class EventBusMock implements EventBus {
   
       expect(this.getDataFromDomainEvent(expectedEvent)).toMatchObject(this.getDataFromDomainEvent(lastPublishedEvent));
     }
+
+    assertSomePublishedEventIs(expectedEvent: DomainEvent, callNumber: number) {
+      const publishSpyCalls = this.publishSpy.mock.calls;
+  
+      expect(publishSpyCalls.length).toBeGreaterThan(0);
+  
+      const publishSpyCall = publishSpyCalls[callNumber - 1];
+      const publishedEvent = publishSpyCall[0][0];
+  
+      expect(this.getDataFromDomainEvent(expectedEvent)).toMatchObject(this.getDataFromDomainEvent(publishedEvent));
+    }
+
   
     private getDataFromDomainEvent(event: DomainEvent) {
       const { eventId, occurredOn, ...attributes } = event;

@@ -19,13 +19,7 @@ export class InvestmentPortfolioCreator {
     }
 
     async run({ id, allocations }: Params): Promise<void> {
-        let portfolio = await this.repository.getById(id);
-
-        if(!portfolio) {
-            portfolio = InvestmentPortfolio.create(id, allocations);
-        }else {
-            portfolio.clear();
-        }
+        const portfolio = InvestmentPortfolio.create(id, allocations);
 
         await this.repository.save(portfolio);
         await this.eventBus.publish(portfolio.pullDomainEvents());

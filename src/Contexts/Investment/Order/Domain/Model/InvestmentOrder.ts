@@ -33,10 +33,23 @@ export class InvestmentOrder extends AggregateRoot {
       this._shares = shares;
       this._type = type;
       this._status = status;
+    }
 
-      this.record(new InvestmentOrderCreated({
-        order: this.toDTO(),
+    static create(
+      id: InvestmentOrderId, 
+      portfolioId: InvestmentPortfolioId,
+      allocationId: InvestmentAllocationId,
+      shares: InvestmentShares,
+      type: InvestmentOrderType,
+      status: InvestmentOrderStatus
+    ): InvestmentOrder {
+      const order = new InvestmentOrder(id, portfolioId, allocationId, shares, type, status);
+  
+      order.record(new InvestmentOrderCreated({
+        order: order.toDTO(),
       }));
+  
+      return order;
     }
     
     public get id(): InvestmentOrderId {

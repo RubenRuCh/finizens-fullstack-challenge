@@ -20,10 +20,16 @@ export class InvestmentPortfolio extends AggregateRoot {
       super();
       this._id = id;
       this._allocations = allocations;
+    }
 
-      this.record(new InvestmentPortfolioCreated({
-        portfolio: this.toDTO(),
+    static create(id: InvestmentPortfolioId, allocations: InvestmentAllocation[]): InvestmentPortfolio {
+      const portfolio = new InvestmentPortfolio(id, allocations);
+  
+      portfolio.record(new InvestmentPortfolioCreated({
+        portfolio: portfolio.toDTO(),
       }));
+  
+      return portfolio;
     }
     
     public get id(): InvestmentPortfolioId {

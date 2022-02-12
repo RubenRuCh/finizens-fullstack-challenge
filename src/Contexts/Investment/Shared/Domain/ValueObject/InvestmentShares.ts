@@ -1,4 +1,4 @@
-import { NumberValueObject } from "../../../Shared/Domain/ValueObject/IntValueObject";
+import { NumberValueObject } from "../../../../Shared/Domain/ValueObject/IntValueObject";
 import { InvalidSharesException } from "../Exception/InvalidSharesException";
 
 export class InvestmentShares extends NumberValueObject {

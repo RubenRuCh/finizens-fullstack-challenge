@@ -1,8 +1,8 @@
 import { AggregateRoot } from "../../../../Shared/Domain/AggregateRoot";
 import { InvestmentOrderId } from "../ValueObject/InvestmentOrderId";
-import { InvestmentAllocationId } from '../../../Shared/ValueObject/InvestmentAllocationId';
-import { InvestmentPortfolioId } from '../../../Shared/ValueObject/InvestmentPortfolioId';
-import { InvestmentShares } from "../../../Shared/ValueObject/InvestmentShares";
+import { InvestmentAllocationId } from '../../../Shared/Domain/ValueObject/InvestmentAllocationId';
+import { InvestmentPortfolioId } from '../../../Shared/Domain/ValueObject/InvestmentPortfolioId';
+import { InvestmentShares } from "../../../Shared/Domain/ValueObject/InvestmentShares";
 import { InvestmentOrderType } from "../ValueObject/InvestmentOrderType";
 import { InvestmentOrderDTO } from "./InvestmentOrderDTO";
 import { InvestmentOrderStatus } from "../ValueObject/InvestmentOrderStatus";

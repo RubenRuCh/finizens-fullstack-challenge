@@ -1,6 +1,6 @@
 import { InvestmentAllocationDTO } from './InvestmentAllocationDTO';
 import { InvestmentShares } from "../../../../Shared/ValueObject/InvestmentShares";
-import { InvestmentAllocationId } from "./InvestmentAllocationId";
+import { InvestmentAllocationId } from '../../../../Shared/ValueObject/InvestmentAllocationId';
 
 export class InvestmentAllocation {
     private _id: InvestmentAllocationId;

@@ -3,14 +3,14 @@ import { InvestmentPortfolioCleared } from './../../Event/Portfolio/InvestmentPo
 import { InvestmentAllocation } from './../Allocation/InvestmentAllocation';
 import { InvestmentPortfolioDTO } from './InvestmentPortfolioDTO';
 import { AggregateRoot } from "../../../../../Shared/Domain/AggregateRoot";
-import { InvestmentPortfolioId } from "./InvestmentPortfolioId";
-import { InvestmentAllocationId } from '../Allocation/InvestmentAllocationId';
+import { InvestmentPortfolioId } from "../../../../Shared/ValueObject/InvestmentPortfolioId";
 import { Nullable } from '../../../../../Shared/Domain/Nullable';
 import { InvestmentShares } from '../../../../Shared/ValueObject/InvestmentShares';
 import { InvestmentAllocationCreated } from '../../Event/Allocation/InvestmentAllocationCreated';
 import { InvestmentAllocationUpdated } from '../../Event/Allocation/InvestmentAllocationUpdated';
 import { InvestmentAllocationDeleted } from '../../Event/Allocation/InvestmentAllocationDeleted';
 import { InvestmentPortfolioUpdated } from '../../Event/Portfolio/InvestmentPortfolioUpdated';
+import { InvestmentAllocationId } from '../../../../Shared/ValueObject/InvestmentAllocationId';
 
 export class InvestmentPortfolio extends AggregateRoot {
     private _id: InvestmentPortfolioId;

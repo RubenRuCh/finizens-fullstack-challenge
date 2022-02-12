@@ -21,6 +21,10 @@ export class Uuid {
     }
   }
 
+  public isEqual(id: Uuid): boolean {
+    return this.value === id.value;
+  }
+
   toString(): string {
     return this.value;
   }

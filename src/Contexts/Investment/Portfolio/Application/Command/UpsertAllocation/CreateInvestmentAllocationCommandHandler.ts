@@ -8,7 +8,7 @@ import { InvestmentAllocationCreator } from "./InvestmentAllocationCreator";
 
 
 export class CreateInvestmentAllocationCommandHandler implements CommandHandler<CreateInvestmentAllocationCommand> {
-    constructor(private portfolioCreator: InvestmentAllocationCreator) {}
+    constructor(private allocationCreator: InvestmentAllocationCreator) {}
 
     subscribedTo(): Command {
         return CreateInvestmentAllocationCommand;
@@ -19,6 +19,6 @@ export class CreateInvestmentAllocationCommandHandler implements CommandHandler<
         const allocationId = new InvestmentAllocationId(command.allocationId);
         const shares = new InvestmentShares(command.shares);
         
-        await this.portfolioCreator.run({ portfolioId, allocationId, shares });
+        await this.allocationCreator.run({ portfolioId, allocationId, shares });
     }
 }

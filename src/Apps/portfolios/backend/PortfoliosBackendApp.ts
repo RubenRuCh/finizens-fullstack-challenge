@@ -1,3 +1,10 @@
+import { DeleteAllocationWhenSharesIsZeroOnAllocationUpdated } from '../../../Contexts/Investment/Portfolio/Application/Command/DeleteAllocation/DeleteAllocationWhenSharesIsZeroOnAllocationUpdated';
+import { InvestmentAllocationEraser } from '../../../Contexts/Investment/Portfolio/Application/Command/DeleteAllocation/InvestmentAllocationEraser';
+import { InMemoryInvestmentPortfolioRepository } from '../../../Contexts/Investment/Portfolio/Infraestructure/Repository/InMemoryInvestmentPortfolioRepository';
+import { DomainEvent } from '../../../Contexts/Shared/Domain/Event/DomainEvent';
+import { DomainEventMapping } from '../../../Contexts/Shared/Domain/Event/DomainEventMapping';
+import { DomainEventSubscriber } from '../../../Contexts/Shared/Domain/Event/DomainEventSubscriber';
+import { InMemorySyncEventBus } from '../../../Contexts/Shared/Infraestructure/EventBus/InMemory/InMemorySyncEventBus';
 import { Server } from './server';
 
 export class PortfoliosBackendApp {
@@ -6,6 +13,7 @@ export class PortfoliosBackendApp {
   async start() {
     const port = process.env.PORT || '8000';
     this.server = new Server(port);
+    await this.registerSubscribers();
     return this.server.listen();
   }
 
@@ -23,5 +31,19 @@ export class PortfoliosBackendApp {
 
   get httpServer() {
     return this.server?.httpServer;
+  }
+
+  private async registerSubscribers() {
+    const eventBus = new InMemorySyncEventBus();
+    const inMemoryPortfolioRepo = new InMemoryInvestmentPortfolioRepository();
+    
+    const subscribers: Array<DomainEventSubscriber<DomainEvent>> = [];
+    subscribers.push(new DeleteAllocationWhenSharesIsZeroOnAllocationUpdated(new InvestmentAllocationEraser(inMemoryPortfolioRepo, eventBus)));
+
+    const domainEventMapping = new DomainEventMapping(subscribers);
+
+    eventBus.setDomainEventMapping(domainEventMapping);
+    eventBus.addSubscribers(subscribers);
+    await eventBus.start();
   }
 }

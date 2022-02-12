@@ -1,8 +1,9 @@
-export abstract class EnumValueObject<T> {
-    readonly value: T;
+import { ValueObject } from "./ValueObject";
+
+export abstract class EnumValueObject<T> extends ValueObject<T> {
   
     constructor(value: T, public readonly validValues: T[]) {
-      this.value = value;
+      super(value);
       this.checkValueIsValid(value);
     }
   

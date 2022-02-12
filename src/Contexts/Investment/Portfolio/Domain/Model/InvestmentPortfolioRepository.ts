@@ -1,7 +1,7 @@
 import { Criteria } from "../../../../Shared/Domain/Criteria/Criteria";
 import { Nullable } from "../../../../Shared/Domain/Nullable";
-import { InvestmentAllocation } from "../Model/Allocation/InvestmentAllocation";
-import { InvestmentPortfolio } from "../Model/Portfolio/InvestmentPortfolio";
+import { InvestmentAllocation } from "./Allocation/InvestmentAllocation";
+import { InvestmentPortfolio } from "./Portfolio/InvestmentPortfolio";
 import { InvestmentPortfolioId } from "../../../Shared/ValueObject/InvestmentPortfolioId";
 import { InvestmentAllocationId } from "../../../Shared/ValueObject/InvestmentAllocationId";
 

@@ -29,7 +29,7 @@ describe('InvestmentPortfolioCreator', () => {
     eventBus.assertLastPublishedEventIs(new InvestmentPortfolioCreated({ portfolio: portfolio.toDTO() }));
   });
 
-  it('should clear the portfolio if already exists', async () => {
+  it('should clear the portfolio if already exists before setting new allocations', async () => {
     const command = CreateInvestmentPortfolioCommandMother.random();
     const portfolio = InvestmentPortfolioMother.fromCommand(command);
 
@@ -38,6 +38,13 @@ describe('InvestmentPortfolioCreator', () => {
     await handler.handle(command);
 
     repository.assertLastSavedPortfolioIs(portfolio);
-    eventBus.assertLastPublishedEventIs(new InvestmentPortfolioCleared({ portfolio: portfolio.toDTO() }));
+    eventBus.assertSomePublishedEventIs(new InvestmentPortfolioCleared(
+      { 
+        portfolio: {
+          ...portfolio.toDTO(),
+          allocations: [],
+        } 
+      }
+    ), 1);
   });
 });

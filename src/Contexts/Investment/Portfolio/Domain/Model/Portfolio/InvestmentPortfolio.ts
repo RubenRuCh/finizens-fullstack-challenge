@@ -41,6 +41,14 @@ export class InvestmentPortfolio extends AggregateRoot {
       return this._allocations;
     }
 
+    public update(allocations: InvestmentAllocation[]): InvestmentPortfolio {
+      allocations.forEach(allocation => {
+        this.upsertAllocation(allocation.id, allocation.shares);
+      });
+     
+      return this;
+    }
+
     public clear(): void {
       this._allocations = [];
 

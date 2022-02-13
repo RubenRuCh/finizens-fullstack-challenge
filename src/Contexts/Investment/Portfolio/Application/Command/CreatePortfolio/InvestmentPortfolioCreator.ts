@@ -25,6 +25,7 @@ export class InvestmentPortfolioCreator {
             portfolio = InvestmentPortfolio.create(id, allocations);
         }else {
             portfolio.clear();
+            portfolio = portfolio.update(allocations);
         }
 
         await this.repository.save(portfolio);

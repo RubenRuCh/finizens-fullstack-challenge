@@ -98,6 +98,19 @@ export class InvestmentOrder extends AggregateRoot {
     return !availableShares.isSmallerThan(sharesToSell);
   }
 
+  public static newShares({
+    order,
+    currentShares
+  }: {
+    order: InvestmentOrder; 
+    currentShares: InvestmentShares;
+  }): InvestmentShares {
+    const sharesFromOrder = order.shares.value * (order.type.isSell ? -1 : 1);
+    const newAllocationShares = currentShares.value + sharesFromOrder;
+
+    return new InvestmentShares(newAllocationShares);
+  }
+
   static fromDTO(plainData: InvestmentOrderDTO): InvestmentOrder {
     return new InvestmentOrder(
       new InvestmentOrderId(plainData.id),

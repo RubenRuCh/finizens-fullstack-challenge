@@ -1,3 +1,4 @@
+import { UpdateInvestmentPortfolioAllocationsOnOrderCompleted } from './../../../Contexts/Investment/Portfolio/Application/Command/UpsertAllocation/UpdateInvestmentPortfolioAllocationsOnOrderCompleted';
 import { DeleteAllocationWhenSharesIsZeroOnAllocationUpdated } from '../../../Contexts/Investment/Portfolio/Application/Command/DeleteAllocation/DeleteAllocationWhenSharesIsZeroOnAllocationUpdated';
 import { InvestmentAllocationEraser } from '../../../Contexts/Investment/Portfolio/Application/Command/DeleteAllocation/InvestmentAllocationEraser';
 import { InMemoryInvestmentPortfolioRepository } from '../../../Contexts/Investment/Portfolio/Infraestructure/Repository/InMemoryInvestmentPortfolioRepository';
@@ -6,6 +7,8 @@ import { DomainEventMapping } from '../../../Contexts/Shared/Domain/Event/Domain
 import { DomainEventSubscriber } from '../../../Contexts/Shared/Domain/Event/DomainEventSubscriber';
 import { InMemorySyncEventBus } from '../../../Contexts/Shared/Infraestructure/EventBus/InMemory/InMemorySyncEventBus';
 import { Server } from './server';
+import { InvestmentAllocationCreator } from '../../../Contexts/Investment/Portfolio/Application/Command/UpsertAllocation/InvestmentAllocationCreator';
+import { InvestmentPortfolioFinder } from '../../../Contexts/Investment/Portfolio/Application/Query/FindPortfolio/InvestmentPortfolioFinder';
 
 export class PortfoliosBackendApp {
   private server?: Server;
@@ -38,7 +41,15 @@ export class PortfoliosBackendApp {
     const inMemoryPortfolioRepo = new InMemoryInvestmentPortfolioRepository();
     
     const subscribers: Array<DomainEventSubscriber<DomainEvent>> = [];
-    subscribers.push(new DeleteAllocationWhenSharesIsZeroOnAllocationUpdated(new InvestmentAllocationEraser(inMemoryPortfolioRepo, eventBus)));
+
+    subscribers.push(new DeleteAllocationWhenSharesIsZeroOnAllocationUpdated(
+      new InvestmentAllocationEraser(inMemoryPortfolioRepo, eventBus)
+    ));
+    
+    subscribers.push(new UpdateInvestmentPortfolioAllocationsOnOrderCompleted(
+      new InvestmentAllocationCreator(inMemoryPortfolioRepo, eventBus),
+      new InvestmentPortfolioFinder(inMemoryPortfolioRepo),
+    ));
 
     const domainEventMapping = new DomainEventMapping(subscribers);
 

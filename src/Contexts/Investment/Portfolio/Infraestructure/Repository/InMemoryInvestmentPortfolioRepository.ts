@@ -8,7 +8,7 @@ export class InMemoryInvestmentPortfolioRepository implements InvestmentPortfoli
     private static portfolios: InvestmentPortfolio[] = [];
 
     public async save(portfolioToSave: InvestmentPortfolio): Promise<void> {
-        const searchedPortfolio = this.getById(portfolioToSave.id);
+        const searchedPortfolio = await this.getById(portfolioToSave.id);
 
         if (!searchedPortfolio) {
             InMemoryInvestmentPortfolioRepository.portfolios.push(portfolioToSave);

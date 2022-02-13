@@ -7,7 +7,7 @@ import { InvestmentOrder } from "./InvestmentOrder";
 
 export interface InvestmentOrderRepository {
     save: (order: InvestmentOrder) => Promise<void>;
-    remove: (orderId: InvestmentOrderId) => Promise<void>;
+    delete: (orderId: InvestmentOrderId) => Promise<void>;
     getById: (orderId: InvestmentOrderId) => Promise<Nullable<InvestmentOrder>>;
     getByPortfolioId: (portfolioId: InvestmentPortfolioId) => Promise<InvestmentOrder[]>;
     search: (criteria: Criteria) => Promise<InvestmentOrder[]>;

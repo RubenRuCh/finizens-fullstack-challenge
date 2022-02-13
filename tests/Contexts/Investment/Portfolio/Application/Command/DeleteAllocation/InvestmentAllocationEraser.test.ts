@@ -1,6 +1,5 @@
 import { DeleteInvestmentAllocationCommandHandler } from '../../../../../../../src/Contexts/Investment/Portfolio/Application/Command/DeleteAllocation/DeleteInvestmentAllocationCommandHandler';
 import { InvestmentAllocationEraser } from '../../../../../../../src/Contexts/Investment/Portfolio/Application/Command/DeleteAllocation/InvestmentAllocationEraser';
-import EventBusMock from '../../../__mocks/EventBusMock';
 import { InvestmentPortfolioRepositoryMock } from '../../../__mocks/InvestmentPortfolioRepositoryMock';
 import { InvestmentAllocationMother } from '../../../Domain/Model/InvestmentAllocationMother';
 import { InvestmentPortfolioMother } from '../../../Domain/Model/InvestmentPortfolioMother';
@@ -8,6 +7,7 @@ import { InvestmentPortfolioNotFoundException } from '../../../../../../../src/C
 import { InvestmentAllocationNotFoundException } from '../../../../../../../src/Contexts/Investment/Portfolio/Domain/Exception/Allocation/InvestmentAllocationNotFoundException';
 import { InvestmentAllocationDeleted } from '../../../../../../../src/Contexts/Investment/Portfolio/Domain/Event/Allocation/InvestmentAllocationDeleted';
 import { DeleteInvestmentAllocationCommandMother } from './DeleteInvestmentAllocationCommandMother';
+import EventBusMock from '../../../../../Shared/__mocks/EventBusMock';
 
 let repository: InvestmentPortfolioRepositoryMock;
 let handler: DeleteInvestmentAllocationCommandHandler;

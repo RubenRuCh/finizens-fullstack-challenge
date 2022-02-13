@@ -2,10 +2,10 @@ import { InvestmentPortfolioCreated } from '../../../../../../../src/Contexts/In
 import { CreateInvestmentPortfolioCommandHandler } from '../../../../../../../src/Contexts/Investment/Portfolio/Application/Command/CreatePortfolio/CreateInvestmentPortfolioCommandHandler';
 import { InvestmentPortfolioCreator } from '../../../../../../../src/Contexts/Investment/Portfolio/Application/Command/CreatePortfolio/InvestmentPortfolioCreator';
 import { InvestmentPortfolioMother } from '../../../Domain/Model/InvestmentPortfolioMother';
-import EventBusMock from '../../../__mocks/EventBusMock';
 import { InvestmentPortfolioRepositoryMock } from '../../../__mocks/InvestmentPortfolioRepositoryMock';
 import { CreateInvestmentPortfolioCommandMother } from './CreateInvestmentPortfolioCommandMother';
 import { InvestmentPortfolioCleared } from '../../../../../../../src/Contexts/Investment/Portfolio/Domain/Event/Portfolio/InvestmentPortfolioCleared';
+import EventBusMock from '../../../../../Shared/__mocks/EventBusMock';
 
 let repository: InvestmentPortfolioRepositoryMock;
 let handler: CreateInvestmentPortfolioCommandHandler;

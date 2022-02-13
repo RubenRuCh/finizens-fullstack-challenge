@@ -1,7 +1,7 @@
-import { DomainEvent } from "../../../../../src/Contexts/Shared/Domain/Event/DomainEvent";
-import { DomainEventMapping } from "../../../../../src/Contexts/Shared/Domain/Event/DomainEventMapping";
-import { DomainEventSubscriber } from "../../../../../src/Contexts/Shared/Domain/Event/DomainEventSubscriber";
-import { EventBus } from "../../../../../src/Contexts/Shared/Domain/Event/EventBus";
+import { DomainEvent } from "../../../../src/Contexts/Shared/Domain/Event/DomainEvent";
+import { DomainEventMapping } from "../../../../src/Contexts/Shared/Domain/Event/DomainEventMapping";
+import { DomainEventSubscriber } from "../../../../src/Contexts/Shared/Domain/Event/DomainEventSubscriber";
+import { EventBus } from "../../../../src/Contexts/Shared/Domain/Event/EventBus";
 
 export default class EventBusMock implements EventBus {
     private publishSpy = jest.fn();

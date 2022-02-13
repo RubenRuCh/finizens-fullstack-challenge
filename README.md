@@ -1,5 +1,30 @@
 # Finizens' FullStack Challenge
 
+## How to run the app
+
+### Backend
+```
+make start-local-portfolios-backend
+```
+
+It will be available in http://localhost:8000. Endpoints begin with ```/api```
+
+### Frontend
+```
+make start-local-portfolios-frontend
+```
+
+It will be available in http://localhost:3001
+
+
+## Things to improve if I had more time
+
+- [ ] Configure Cucumber or another Gherkin tool to run ```features``` as acceptance tests
+- [ ] Create a database implementation for the repositories (instead of InMemory). For example, I would have use PostgreSQL
+- [ ] Create a real Query, Command & Event bus implementations (instead of InMemory). For example, RabbitMQ
+- [ ] Apply Criteria Pattern to optimize filters and search operations
+
+
 ## Instructions
 
   - Feel free to use the framework, persistence system and third party library you like.

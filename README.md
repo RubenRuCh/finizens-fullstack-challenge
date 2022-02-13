@@ -16,6 +16,18 @@ make start-local-portfolios-frontend
 
 It will be available in http://localhost:3001
 
+### Tests
+
+All tests
+```
+make test
+```
+
+Watch mode
+```
+make test-unit-watch
+```
+
 
 ## Things to improve if I had more time
 
@@ -121,6 +133,6 @@ Orders must be completed manually selecting them from a list.
 When the order is completed, the portfolio must be refreshed to update the information.
 
 In case you'd like to start with the frontend or don't have enough time for completing the backend, you still can focus on the frontend with a simulated API we set up for this challenge:
-* Install it running `make install` from your project's root directory, it should install all the required node dependencies.
-* Run the mocked server with `make start`
+* Install it running `install-dummy-server` from your project's root directory, it should install all the required node dependencies.
+* Run the mocked server with `start-dummy-server`
 * Check it running at http://localhost:3000

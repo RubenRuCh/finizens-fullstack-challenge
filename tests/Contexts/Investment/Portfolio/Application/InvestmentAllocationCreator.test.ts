@@ -4,7 +4,6 @@ import EventBusMock from '../__mocks/EventBusMock';
 import { InvestmentPortfolioRepositoryMock } from '../__mocks/InvestmentPortfolioRepositoryMock';
 import { CreateInvestmentAllocationCommandMother } from './CreateInvestmentAllocationCommandMother';
 import { InvestmentAllocationMother } from '../Domain/Model/InvestmentAllocationMother';
-import { CreateInvestmentPortfolioCommandMother } from './CreateInvestmentPortfolioCommandMother';
 import { InvestmentPortfolioMother } from '../Domain/Model/InvestmentPortfolioMother';
 import { InvestmentAllocationCreated } from '../../../../../src/Contexts/Investment/Portfolio/Domain/Event/Allocation/InvestmentAllocationCreated';
 import { InvestmentAllocationUpdated } from '../../../../../src/Contexts/Investment/Portfolio/Domain/Event/Allocation/InvestmentAllocationUpdated';
@@ -23,8 +22,7 @@ describe('InvestmentAllocationCreator', () => {
   });
   
   it('should create a valid allocation', async () => {
-    const portfolioCommand = CreateInvestmentPortfolioCommandMother.random();
-    const portfolio = InvestmentPortfolioMother.fromCommand(portfolioCommand);
+    const portfolio = InvestmentPortfolioMother.random();
 
     repository.whenSearchThenReturn(portfolio);
 
@@ -42,8 +40,7 @@ describe('InvestmentAllocationCreator', () => {
 
 
   it('should update the allocation if it already exists in the portfolio', async () => {
-    const portfolioCommand = CreateInvestmentPortfolioCommandMother.random();
-    const portfolio = InvestmentPortfolioMother.fromCommand(portfolioCommand);
+    const portfolio = InvestmentPortfolioMother.random();
 
     repository.whenSearchThenReturn(portfolio);
 

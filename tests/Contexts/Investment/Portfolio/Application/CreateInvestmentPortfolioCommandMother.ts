@@ -11,7 +11,7 @@ export class CreateInvestmentPortfolioCommandMother {
     static random(): CreateInvestmentPortfolioCommand {
         return this.create(
             InvestmentPortfolioIdMother.random().value, 
-            InvestmentAllocationsMother.random(),
+            InvestmentAllocationsMother.random().map(allocation => allocation.toDTO()),
         );
     }
   }

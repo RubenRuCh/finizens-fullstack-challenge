@@ -2,6 +2,7 @@ import { DomainEventClass } from "../../../../../Shared/Domain/Event/DomainEvent
 import { DomainEventSubscriber } from "../../../../../Shared/Domain/Event/DomainEventSubscriber";
 import { InvestmentAllocationId } from "../../../../Shared/Domain/ValueObject/InvestmentAllocationId";
 import { InvestmentPortfolioId } from "../../../../Shared/Domain/ValueObject/InvestmentPortfolioId";
+import { InvestmentShares } from "../../../../Shared/Domain/ValueObject/InvestmentShares";
 import { InvestmentAllocationUpdated } from "../../../Domain/Event/Allocation/InvestmentAllocationUpdated";
 import { InvestmentAllocationEraser } from "./InvestmentAllocationEraser";
 
@@ -15,9 +16,9 @@ export class DeleteAllocationWhenSharesIsZeroOnAllocationUpdated implements Doma
     async on(domainEvent: InvestmentAllocationUpdated): Promise<void> {
       const { aggregateId, allocation} = domainEvent;
 
-      const allocationHasZeroShares = allocation.shares === 0;
+      const shares = new InvestmentShares(allocation.shares);
 
-      if (!allocationHasZeroShares) {
+      if (!shares.areEmpty) {
         return;
       }
 

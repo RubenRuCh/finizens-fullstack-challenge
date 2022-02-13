@@ -11,6 +11,7 @@ import { InvestmentAllocationUpdated } from '../../Event/Allocation/InvestmentAl
 import { InvestmentAllocationDeleted } from '../../Event/Allocation/InvestmentAllocationDeleted';
 import { InvestmentPortfolioUpdated } from '../../Event/Portfolio/InvestmentPortfolioUpdated';
 import { InvestmentAllocationId } from '../../../../Shared/Domain/ValueObject/InvestmentAllocationId';
+import { InvestmentAllocationNotFoundException } from '../../Exception/Allocation/InvestmentAllocationNotFoundException';
 
 export class InvestmentPortfolio extends AggregateRoot {
     private _id: InvestmentPortfolioId;
@@ -106,8 +107,8 @@ export class InvestmentPortfolio extends AggregateRoot {
     public deleteAllocation(allocationId: InvestmentAllocationId): void {
       const searchedAllocation = this.getAllocation(allocationId);
 
-      if(!searchedAllocation){
-        return;
+      if(!searchedAllocation) {
+        throw new InvestmentAllocationNotFoundException(allocationId.value);
       }
 
       this._allocations = this._allocations.filter(allocation => !allocation.id.isEqual(allocationId));

@@ -19,8 +19,8 @@ export class InvestmentPortfolioMother {
   
     static random(): InvestmentPortfolio {
       return this.create(
-            InvestmentPortfolioIdMother.random(), 
-            InvestmentAllocationsMother.random().map(allocationDTO => InvestmentAllocation.fromDTO(allocationDTO)), 
+          InvestmentPortfolioIdMother.random(), 
+          InvestmentAllocationsMother.random(), 
         );
     }
   }

@@ -1,8 +1,8 @@
-import { InvestmentAllocationDTO } from '../../../../../../src/Contexts/Investment/Portfolio/Domain/Model/Allocation/InvestmentAllocationDTO';
+import { InvestmentAllocation } from '../../../../../../src/Contexts/Investment/Portfolio/Domain/Model/Allocation/InvestmentAllocation';
 import { InvestmentAllocationMother } from './InvestmentAllocationMother';
 
 export class InvestmentAllocationsMother {
-  static random(): InvestmentAllocationDTO[] {
+  static random(): InvestmentAllocation[] {
     const minAllocations = 0;
     const maxAllocations = 20;
 

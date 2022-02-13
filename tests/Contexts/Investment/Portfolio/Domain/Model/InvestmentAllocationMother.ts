@@ -16,7 +16,13 @@ export class InvestmentAllocationMother {
       return () => InvestmentAllocationMother.random();
     }
   
-    static random(): InvestmentAllocationDTO {
+    static random(): InvestmentAllocation {
+      const allocationDTO = this.randomDTO();
+
+      return InvestmentAllocation.fromDTO(allocationDTO);
+    }
+
+    static randomDTO(): InvestmentAllocationDTO {
       return this.create(
         UuidMother.random(),
         NumberMother.random(),

@@ -1,23 +1,21 @@
-import { CreateInvestmentAllocationCommand } from '../../../../../src/Contexts/Investment/Portfolio/Application/Command/UpsertAllocation/CreateInvestmentAllocationCommand';
+import { DeleteInvestmentAllocationCommand } from '../../../../../src/Contexts/Investment/Portfolio/Application/Command/DeleteAllocation/DeleteInvestmentAllocationCommand';
 import { InvestmentPortfolioIdMother } from '../../Shared/Domain/ValueObject/InvestmentPortfolioIdMother';
 import { InvestmentAllocationMother } from '../Domain/Model/InvestmentAllocationMother';
 
-export class CreateInvestmentAllocationCommandMother {
+export class DeleteInvestmentAllocationCommandMother {
     static create(
         portfolioId: string, 
         allocationId: string, 
-        shares: number,
-    ): CreateInvestmentAllocationCommand {
-        return new CreateInvestmentAllocationCommand({ portfolioId, allocationId, shares });
+    ): DeleteInvestmentAllocationCommand {
+        return new DeleteInvestmentAllocationCommand({ portfolioId, allocationId });
     }
   
-    static random(): CreateInvestmentAllocationCommand {
+    static random(): DeleteInvestmentAllocationCommand {
         const randomAllocation = InvestmentAllocationMother.random();
 
         return this.create(
             InvestmentPortfolioIdMother.random().value, 
             randomAllocation.id.value,
-            randomAllocation.shares.value,
         );
     }
   }

@@ -9,4 +9,8 @@ export class InvestmentShares extends NumberValueObject {
 
         super(value);
     }
+
+    public get areEmpty(): boolean {
+        return this.value === 0;
+    }
 }

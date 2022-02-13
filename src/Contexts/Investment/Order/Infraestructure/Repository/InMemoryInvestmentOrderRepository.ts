@@ -1,3 +1,4 @@
+import { InvestmentOrderMother } from './../../../../../../tests/Contexts/Investment/Order/Domain/Model/InvestmentOrderMother';
 import { InvestmentOrderNotFoundException } from './../../Domain/Exception/InvestmentOrderNotFoundException';
 import { Criteria } from "../../../../Shared/Domain/Criteria/Criteria";
 import { Nullable } from "../../../../Shared/Domain/Nullable";
@@ -5,9 +6,23 @@ import { InvestmentPortfolioId } from "../../../Shared/Domain/ValueObject/Invest
 import { InvestmentOrder } from "../../Domain/Model/InvestmentOrder";
 import { InvestmentOrderRepository } from "../../Domain/Model/InvestmentOrderRepository";
 import { InvestmentOrderId } from "../../Domain/ValueObject/InvestmentOrderId";
+import { initialPortfolioId } from '../../../Portfolio/Infraestructure/Repository/InMemoryInvestmentPortfolioRepository';
+
+const initialPendingSellOrder = InvestmentOrderMother.withPortfolioId(InvestmentOrderMother.pendingSell(), initialPortfolioId);
+const initialCompletedSellOrder = InvestmentOrderMother.withPortfolioId(InvestmentOrderMother.completedSell(), initialPortfolioId);
+
+const initialPendingBuyOrder = InvestmentOrderMother.withPortfolioId(InvestmentOrderMother.pendingBuy(), initialPortfolioId);
+const initialCompletedBuyOrder = InvestmentOrderMother.withPortfolioId(InvestmentOrderMother.completedBuy(), initialPortfolioId);
+
+const initialOrders = [
+    initialPendingSellOrder,
+    initialCompletedSellOrder,
+    initialPendingBuyOrder,
+    initialCompletedBuyOrder
+];
 
 export class InMemoryInvestmentOrderRepository implements InvestmentOrderRepository {
-    private static orders: InvestmentOrder[] = [];
+    private static orders: InvestmentOrder[] = initialOrders;
 
     public async save(orderToSave: InvestmentOrder): Promise<void> {
         const searchedOrder = await this.getById(orderToSave.id);

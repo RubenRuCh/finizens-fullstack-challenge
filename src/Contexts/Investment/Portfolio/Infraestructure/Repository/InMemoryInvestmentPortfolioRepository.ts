@@ -7,8 +7,20 @@ import { InvestmentPortfolio } from "../../Domain/Model/Portfolio/InvestmentPort
 export class InMemoryInvestmentPortfolioRepository implements InvestmentPortfolioRepository {
     private static portfolios: InvestmentPortfolio[] = [];
 
-    public async save(portfolio: InvestmentPortfolio): Promise<void> {
-        InMemoryInvestmentPortfolioRepository.portfolios.push(portfolio);
+    public async save(portfolioToSave: InvestmentPortfolio): Promise<void> {
+        const searchedPortfolio = this.getById(portfolioToSave.id);
+
+        if (!searchedPortfolio) {
+            InMemoryInvestmentPortfolioRepository.portfolios.push(portfolioToSave);
+            return;
+        }
+
+        const portfolios = [...InMemoryInvestmentPortfolioRepository.portfolios];
+
+        const index = portfolios.findIndex(portfolio => portfolio.id.isEqual(portfolioToSave.id));
+        portfolios[index] = portfolioToSave;
+        
+        InMemoryInvestmentPortfolioRepository.portfolios = portfolios;
     }
 
     public async search(_criteria: Criteria): Promise<InvestmentPortfolio[]> {

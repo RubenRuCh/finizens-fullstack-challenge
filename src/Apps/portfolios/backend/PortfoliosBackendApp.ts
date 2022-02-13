@@ -9,6 +9,9 @@ import { InMemorySyncEventBus } from '../../../Contexts/Shared/Infraestructure/E
 import { Server } from './server';
 import { InvestmentAllocationCreator } from '../../../Contexts/Investment/Portfolio/Application/Command/UpsertAllocation/InvestmentAllocationCreator';
 import { InvestmentPortfolioFinder } from '../../../Contexts/Investment/Portfolio/Application/Query/FindPortfolio/InvestmentPortfolioFinder';
+import { DeleteInvestmentOrdersOfPortfolioOnPortfolioCleaned } from '../../../Contexts/Investment/Order/Application/Command/DeleteOrdersOfPortfolio/DeleteInvestmentOrdersOfPortfolioOnPortfolioCleaned';
+import { InvestmentOrdersOfPortfolioEraser } from '../../../Contexts/Investment/Order/Application/Command/DeleteOrdersOfPortfolio/InvestmentOrdersOfPortfolioEraser';
+import { InMemoryInvestmentOrderRepository } from '../../../Contexts/Investment/Order/Infraestructure/Repository/InMemoryInvestmentOrderRepository';
 
 export class PortfoliosBackendApp {
   private server?: Server;
@@ -39,6 +42,7 @@ export class PortfoliosBackendApp {
   private async registerSubscribers() {
     const eventBus = new InMemorySyncEventBus();
     const inMemoryPortfolioRepo = new InMemoryInvestmentPortfolioRepository();
+    const inMemoryOrderRepo = new InMemoryInvestmentOrderRepository();
     
     const subscribers: Array<DomainEventSubscriber<DomainEvent>> = [];
 
@@ -49,6 +53,10 @@ export class PortfoliosBackendApp {
     subscribers.push(new UpdateInvestmentPortfolioAllocationsOnOrderCompleted(
       new InvestmentAllocationCreator(inMemoryPortfolioRepo, eventBus),
       new InvestmentPortfolioFinder(inMemoryPortfolioRepo),
+    ));
+
+    subscribers.push(new DeleteInvestmentOrdersOfPortfolioOnPortfolioCleaned(
+      new InvestmentOrdersOfPortfolioEraser(inMemoryOrderRepo),
     ));
 
     const domainEventMapping = new DomainEventMapping(subscribers);

@@ -1,7 +1,8 @@
 import express, { Express, Router, Request, Response } from 'express';
 import { AsyncHandler } from '../../../../Contexts/Shared/Infraestructure/AsyncHandler';
-import { GetPortfolioController } from '../controllers/GetPortfolioController';
-import { GetPortfoliosController } from '../controllers/GetPortfoliosController';
+import { GetPortfolioController } from '../controllers/portfolios/GetPortfolioController';
+import { GetPortfoliosController } from '../controllers/portfolios/GetPortfoliosController';
+import { PutPortfolioController } from '../controllers/portfolios/PutPortfolioController';
 
 export enum PortfoliosEndpoints {
   GetAll = '/',
@@ -28,8 +29,7 @@ router.get(
 router.put(
   PortfoliosEndpoints.PutOne,
   AsyncHandler((req: Request, res: Response) => (
-      console.log(req)
-      // new PutPortfolioController().run(req, res)
+      new PutPortfolioController().run(req, res)
   )),
 );
 

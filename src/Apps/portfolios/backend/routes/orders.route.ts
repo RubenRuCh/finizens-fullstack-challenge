@@ -1,5 +1,8 @@
-import express, { Express, Router } from 'express';
+import express, { Express, Router, Request, Response } from 'express';
 import { AsyncHandler } from '../../../../Contexts/Shared/Infraestructure/AsyncHandler';
+import { GetNonCompletedOrdersController } from '../controllers/orders/GetNonCompletedOrdersController';
+import { PatchOrderController } from '../controllers/orders/PatchOrderController';
+import { PostOrderController } from '../controllers/orders/PostOrderController';
 
 export enum OrdersEndpoints {
     GetNonCompleted = '/non-completed/:portfolioId',
@@ -12,24 +15,21 @@ const router: Router = express.Router();
 router.get(
     OrdersEndpoints.GetNonCompleted,
     AsyncHandler((req: Request, res: Response) => (
-        console.log(req)
-    //   new GetNonCompletedOrdersController().run(req, res)
+      new GetNonCompletedOrdersController().run(req, res)
     )),
 );
 
 router.post(
     OrdersEndpoints.CreateNew,
     AsyncHandler((req: Request, res: Response) => (
-        console.log(req)
-    //   new PostOrderController().run(req, res)
+      new PostOrderController().run(req, res)
     )),
 );
 
 router.patch(
     OrdersEndpoints.UpdateOne,
     AsyncHandler((req: Request, res: Response) => (
-        console.log(req)
-        // new PatchOrderController().run(req, res)
+        new PatchOrderController().run(req, res)
     )),
 );
 

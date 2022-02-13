@@ -88,6 +88,16 @@ export class InvestmentOrder extends AggregateRoot {
     }));
   }
 
+  public static isSellViable({
+    sharesToSell,
+    availableShares
+  }: {
+    sharesToSell: InvestmentShares; 
+    availableShares: InvestmentShares;
+  }): boolean {
+    return !availableShares.isSmallerThan(sharesToSell);
+  }
+
   static fromDTO(plainData: InvestmentOrderDTO): InvestmentOrder {
     return new InvestmentOrder(
       new InvestmentOrderId(plainData.id),

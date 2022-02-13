@@ -2,6 +2,11 @@
 
 ## How to run the app
 
+### Install dependencies
+```
+make install
+```
+
 ### Backend
 ```
 make start-local-portfolios-backend

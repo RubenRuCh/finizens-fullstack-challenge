@@ -41,9 +41,8 @@ export class InvestmentOrder extends AggregateRoot {
     allocationId: InvestmentAllocationId,
     shares: InvestmentShares,
     type: InvestmentOrderType,
-    status: InvestmentOrderStatus
   ): InvestmentOrder {
-    const order = new InvestmentOrder(id, portfolioId, allocationId, shares, type, status);
+    const order = new InvestmentOrder(id, portfolioId, allocationId, shares, type, InvestmentOrderStatus.pending());
 
     order.record(new InvestmentOrderCreated({
       order: order.toDTO(),

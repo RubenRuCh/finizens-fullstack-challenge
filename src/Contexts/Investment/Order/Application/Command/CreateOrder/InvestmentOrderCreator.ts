@@ -8,7 +8,6 @@ import { InvestmentShares } from '../../../../Shared/Domain/ValueObject/Investme
 import { InvestmentOrder } from '../../../Domain/Model/InvestmentOrder';
 import { InvestmentOrderRepository } from '../../../Domain/Model/InvestmentOrderRepository';
 import { InvestmentOrderId } from '../../../Domain/ValueObject/InvestmentOrderId';
-import { InvestmentOrderStatus } from '../../../Domain/ValueObject/InvestmentOrderStatus';
 import { InvestmentOrderType } from '../../../Domain/ValueObject/InvestmentOrderType';
 import { InvestmentPortfolio } from '../../../../Portfolio/Domain/Model/Portfolio/InvestmentPortfolio';
 import { FindInvestmentPortfolioByIdQueryHandler } from '../../../../Portfolio/Application/Query/FindPortfolio/FindInvestmentPortfolioByIdQueryHandler';
@@ -49,7 +48,6 @@ export class InvestmentOrderCreator {
             allocationId,
             shares,
             type,
-            InvestmentOrderStatus.pending()
         );
 
         await this.repository.save(order);

@@ -225,7 +225,7 @@ describe('InvestmentOrderCreator.test', () => {
     });
 
     it('should throw an exception when trying to sell shares from a portfolio that does not exist', async () => {
-      const command = CreateInvestmentOrderCommandMother.random()
+      const command = CreateInvestmentOrderCommandMother.pendingSell();
   
       portfolioRepository.whenSearchThenReturn(null);
 

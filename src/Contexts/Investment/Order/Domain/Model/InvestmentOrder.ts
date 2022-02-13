@@ -78,7 +78,7 @@ export class InvestmentOrder extends AggregateRoot {
 
   public complete(): void {
     if(this.status.isCompleted) {
-      throw new InvestmentOrderAlreadyCompletedException();
+      throw new InvestmentOrderAlreadyCompletedException(this.id.value);
     }
 
     this._status = InvestmentOrderStatus.completed();

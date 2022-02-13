@@ -1,5 +1,5 @@
 import { InvestmentAllocationEvent, InvestmentAllocationEventBody } from './InvestmentAllocationEvent';
-import { DomainEvent } from "../../../../../Shared/Domain/Event/DomainEvent";
+import { DomainEvent } from '../../../../../Shared/Domain/Event/DomainEvent';
 import { InvestmentAllocationDTO } from '../../Model/Allocation/InvestmentAllocationDTO';
 
 export class InvestmentAllocationDeleted extends InvestmentAllocationEvent {

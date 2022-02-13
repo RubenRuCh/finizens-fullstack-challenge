@@ -1,8 +1,8 @@
-import { DomainEvent } from "../../../Domain/Event/DomainEvent";
-import { DomainEventMapping } from "../../../Domain/Event/DomainEventMapping";
-import { DomainEventSubscriber } from "../../../Domain/Event/DomainEventSubscriber";
-import { EventBus } from "../../../Domain/Event/EventBus";
-import { EventEmitterBus } from "../EventEmitterBus";
+import { DomainEvent } from '../../../Domain/Event/DomainEvent';
+import { DomainEventMapping } from '../../../Domain/Event/DomainEventMapping';
+import { DomainEventSubscriber } from '../../../Domain/Event/DomainEventSubscriber';
+import { EventBus } from '../../../Domain/Event/EventBus';
+import { EventEmitterBus } from '../EventEmitterBus';
 
 export class InMemoryAsyncEventBus implements EventBus {
   private bus: EventEmitterBus;

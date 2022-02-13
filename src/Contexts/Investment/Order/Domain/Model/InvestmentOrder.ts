@@ -1,14 +1,14 @@
-import { AggregateRoot } from "../../../../Shared/Domain/AggregateRoot";
-import { InvestmentOrderId } from "../ValueObject/InvestmentOrderId";
+import { AggregateRoot } from '../../../../Shared/Domain/AggregateRoot';
+import { InvestmentOrderId } from '../ValueObject/InvestmentOrderId';
 import { InvestmentAllocationId } from '../../../Shared/Domain/ValueObject/InvestmentAllocationId';
 import { InvestmentPortfolioId } from '../../../Shared/Domain/ValueObject/InvestmentPortfolioId';
-import { InvestmentShares } from "../../../Shared/Domain/ValueObject/InvestmentShares";
-import { InvestmentOrderType } from "../ValueObject/InvestmentOrderType";
-import { InvestmentOrderDTO } from "./InvestmentOrderDTO";
-import { InvestmentOrderStatus } from "../ValueObject/InvestmentOrderStatus";
-import { InvestmentOrderAlreadyCompletedException } from "../Exception/InvestmentOrderAlreadyCompletedException";
-import { InvestmentOrderCompleted } from "../Event/Order/InvestmentOrderCompleted";
-import { InvestmentOrderCreated } from "../Event/Order/InvestmentOrderCreated";
+import { InvestmentShares } from '../../../Shared/Domain/ValueObject/InvestmentShares';
+import { InvestmentOrderType } from '../ValueObject/InvestmentOrderType';
+import { InvestmentOrderDTO } from './InvestmentOrderDTO';
+import { InvestmentOrderStatus } from '../ValueObject/InvestmentOrderStatus';
+import { InvestmentOrderAlreadyCompletedException } from '../Exception/InvestmentOrderAlreadyCompletedException';
+import { InvestmentOrderCompleted } from '../Event/Order/InvestmentOrderCompleted';
+import { InvestmentOrderCreated } from '../Event/Order/InvestmentOrderCreated';
 
 export class InvestmentOrder extends AggregateRoot {
   private _id: InvestmentOrderId;
@@ -19,7 +19,7 @@ export class InvestmentOrder extends AggregateRoot {
   private _status: InvestmentOrderStatus;
 
   constructor(
-    id: InvestmentOrderId, 
+    id: InvestmentOrderId,
     portfolioId: InvestmentPortfolioId,
     allocationId: InvestmentAllocationId,
     shares: InvestmentShares,
@@ -36,7 +36,7 @@ export class InvestmentOrder extends AggregateRoot {
   }
 
   static create(
-    id: InvestmentOrderId, 
+    id: InvestmentOrderId,
     portfolioId: InvestmentPortfolioId,
     allocationId: InvestmentAllocationId,
     shares: InvestmentShares,
@@ -51,7 +51,7 @@ export class InvestmentOrder extends AggregateRoot {
 
     return order;
   }
-  
+
   public get id(): InvestmentOrderId {
     return this._id;
   }
@@ -63,7 +63,7 @@ export class InvestmentOrder extends AggregateRoot {
   public get allocationId(): InvestmentAllocationId {
     return this._allocationId;
   }
-  
+
   public get shares(): InvestmentShares {
     return this._shares;
   }
@@ -71,13 +71,13 @@ export class InvestmentOrder extends AggregateRoot {
   public get type(): InvestmentOrderType {
     return this._type;
   }
-  
+
   public get status(): InvestmentOrderStatus {
     return this._status;
   }
 
   public complete(): void {
-    if(this.status.isCompleted) {
+    if (this.status.isCompleted) {
       throw new InvestmentOrderAlreadyCompletedException(this.id.value);
     }
 
@@ -92,7 +92,7 @@ export class InvestmentOrder extends AggregateRoot {
     sharesToSell,
     availableShares
   }: {
-    sharesToSell: InvestmentShares; 
+    sharesToSell: InvestmentShares;
     availableShares: InvestmentShares;
   }): boolean {
     return !availableShares.isSmallerThan(sharesToSell);
@@ -102,7 +102,7 @@ export class InvestmentOrder extends AggregateRoot {
     order,
     currentShares
   }: {
-    order: InvestmentOrder; 
+    order: InvestmentOrder;
     currentShares: InvestmentShares;
   }): InvestmentShares {
     const sharesFromOrder = order.shares.value * (order.type.isSell ? -1 : 1);

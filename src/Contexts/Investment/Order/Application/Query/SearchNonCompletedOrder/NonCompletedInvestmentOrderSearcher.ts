@@ -1,6 +1,6 @@
-import { InvestmentPortfolioId } from "../../../../Shared/Domain/ValueObject/InvestmentPortfolioId";
-import { InvestmentOrderRepository } from "../../../Domain/Model/InvestmentOrderRepository";
-import { SearchInvestmentOrdersResponse } from "./SearchInvestmentOrdersResponse";
+import { InvestmentPortfolioId } from '../../../../Shared/Domain/ValueObject/InvestmentPortfolioId';
+import { InvestmentOrderRepository } from '../../../Domain/Model/InvestmentOrderRepository';
+import { SearchInvestmentOrdersResponse } from './SearchInvestmentOrdersResponse';
 
 export class NonCompletedInvestmentOrderSearcher {
   constructor(private repository: InvestmentOrderRepository) {}
@@ -14,4 +14,3 @@ export class NonCompletedInvestmentOrderSearcher {
     return new SearchInvestmentOrdersResponse(nonCompletedOrdersOfPortfolio);
   }
 }
-  

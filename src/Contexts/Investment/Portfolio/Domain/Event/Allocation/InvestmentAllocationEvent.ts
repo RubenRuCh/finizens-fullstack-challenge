@@ -1,5 +1,5 @@
 import { InvestmentAllocationDTO } from './../../Model/Allocation/InvestmentAllocationDTO';
-import { DomainEvent } from "../../../../../Shared/Domain/Event/DomainEvent";
+import { DomainEvent } from '../../../../../Shared/Domain/Event/DomainEvent';
 
 export type InvestmentAllocationEventBody = {
     readonly eventName: string;
@@ -28,7 +28,7 @@ export class InvestmentAllocationEvent extends DomainEvent {
     }) {
         const buildedEventName = `${InvestmentAllocationEvent.BASE_EVENT_NAME}.${eventName}`;
         super(buildedEventName, aggregateId, eventId, occurredOn);
-        
+
         this.allocation = allocation;
         this.eventName = buildedEventName;
     }

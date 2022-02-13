@@ -1,4 +1,4 @@
-import { InvestmentOrderTypeValue } from "../../../Domain/ValueObject/InvestmentOrderType";
+import { InvestmentOrderTypeValue } from '../../../Domain/ValueObject/InvestmentOrderType';
 
 export type CreateInvestmentOrderRequest = {
     id: string;
@@ -7,4 +7,3 @@ export type CreateInvestmentOrderRequest = {
     shares: number;
     type: InvestmentOrderTypeValue;
 };
-  

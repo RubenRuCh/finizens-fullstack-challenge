@@ -1,4 +1,4 @@
-import { BaseException } from "../../../../Shared/Domain/Exception/BaseException";
+import { BaseException } from '../../../../Shared/Domain/Exception/BaseException';
 
 export class InvestmentOrderCannotSellMoreSharesThanAvailableInAllocationException extends BaseException {
     protected errorCode(): string {

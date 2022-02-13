@@ -1,4 +1,4 @@
-import { Query } from "../../../../../Shared/Domain/CQRS/Query/Query";
+import { Query } from '../../../../../Shared/Domain/CQRS/Query/Query';
 
 export class SearchNonCompletedInvestmentOrdersByPortfolioIdQuery implements Query {
   readonly portfolioId: string;
@@ -9,4 +9,3 @@ export class SearchNonCompletedInvestmentOrdersByPortfolioIdQuery implements Que
     this.portfolioId = portfolioId;
   }
 }
-  

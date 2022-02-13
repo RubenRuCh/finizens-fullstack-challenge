@@ -1,6 +1,6 @@
-import { DomainEvent } from "../../../../../Shared/Domain/Event/DomainEvent";
-import { InvestmentAllocationDTO } from "../../Model/Allocation/InvestmentAllocationDTO";
-import { InvestmentAllocationEvent, InvestmentAllocationEventBody } from "./InvestmentAllocationEvent";
+import { DomainEvent } from '../../../../../Shared/Domain/Event/DomainEvent';
+import { InvestmentAllocationDTO } from '../../Model/Allocation/InvestmentAllocationDTO';
+import { InvestmentAllocationEvent, InvestmentAllocationEventBody } from './InvestmentAllocationEvent';
 
 export class InvestmentAllocationUpdated extends InvestmentAllocationEvent {
     constructor({

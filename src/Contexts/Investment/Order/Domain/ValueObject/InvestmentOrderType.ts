@@ -1,9 +1,9 @@
-import { ValueObject } from "../../../../Shared/Domain/ValueObject/ValueObject";
+import { ValueObject } from '../../../../Shared/Domain/ValueObject/ValueObject';
 
 export type InvestmentOrderTypeValue = 'buy' | 'sell';
 
 export class InvestmentOrderType extends ValueObject<InvestmentOrderTypeValue> {
-    constructor(value: InvestmentOrderTypeValue){
+    constructor(value: InvestmentOrderTypeValue) {
         super(value);
     }
 

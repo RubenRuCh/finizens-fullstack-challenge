@@ -1,5 +1,5 @@
-import { DomainEvent, DomainEventClass } from "./DomainEvent";
-import { DomainEventSubscriber } from "./DomainEventSubscriber";
+import { DomainEvent, DomainEventClass } from './DomainEvent';
+import { DomainEventSubscriber } from './DomainEventSubscriber';
 
 type Mapping = Map<string, DomainEventClass>;
 

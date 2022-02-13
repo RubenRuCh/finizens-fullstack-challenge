@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { MissingMandatoryParameterException } from "../Domain/Exception/MissingMandatoryParameterException";
+import { MissingMandatoryParameterException } from '../Domain/Exception/MissingMandatoryParameterException';
 
 export class CustomRequest {
 

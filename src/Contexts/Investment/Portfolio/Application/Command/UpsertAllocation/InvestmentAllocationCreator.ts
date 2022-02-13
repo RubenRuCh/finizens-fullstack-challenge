@@ -1,9 +1,9 @@
-import { EventBus } from "../../../../../Shared/Domain/Event/EventBus";
-import { InvestmentAllocationId } from "../../../../Shared/Domain/ValueObject/InvestmentAllocationId";
-import { InvestmentPortfolioId } from "../../../../Shared/Domain/ValueObject/InvestmentPortfolioId";
-import { InvestmentShares } from "../../../../Shared/Domain/ValueObject/InvestmentShares";
-import { InvestmentPortfolioNotFoundException } from "../../../Domain/Exception/Portfolio/InvestmentPortfolioNotFoundException";
-import { InvestmentPortfolioRepository } from "../../../Domain/Model/InvestmentPortfolioRepository";
+import { EventBus } from '../../../../../Shared/Domain/Event/EventBus';
+import { InvestmentAllocationId } from '../../../../Shared/Domain/ValueObject/InvestmentAllocationId';
+import { InvestmentPortfolioId } from '../../../../Shared/Domain/ValueObject/InvestmentPortfolioId';
+import { InvestmentShares } from '../../../../Shared/Domain/ValueObject/InvestmentShares';
+import { InvestmentPortfolioNotFoundException } from '../../../Domain/Exception/Portfolio/InvestmentPortfolioNotFoundException';
+import { InvestmentPortfolioRepository } from '../../../Domain/Model/InvestmentPortfolioRepository';
 
 type Params = {
     portfolioId: InvestmentPortfolioId;
@@ -23,7 +23,7 @@ export class InvestmentAllocationCreator {
     async run({ portfolioId, allocationId, shares }: Params): Promise<void> {
         const portfolio = await this.repository.getById(portfolioId);
 
-        if(!portfolio) {
+        if (!portfolio) {
             throw new InvestmentPortfolioNotFoundException(portfolioId.value);
         }
 

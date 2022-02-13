@@ -1,5 +1,5 @@
-import { Command } from "../../../../../Shared/Domain/CQRS/Command/Command";
-import { CreateInvestmentAllocationRequest } from "./CreateInvestmentAllocationRequest";
+import { Command } from '../../../../../Shared/Domain/CQRS/Command/Command';
+import { CreateInvestmentAllocationRequest } from './CreateInvestmentAllocationRequest';
 
 export class CreateInvestmentAllocationCommand extends Command {
     portfolioId: string;

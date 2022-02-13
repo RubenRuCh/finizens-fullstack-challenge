@@ -1,6 +1,6 @@
 import { InvestmentPortfolioDTO } from '../../Model/Portfolio/InvestmentPortfolioDTO';
 import { InvestmentPortfolioEvent, InvestmentPortfolioEventBody } from './InvestmentPortfolioEvent';
-import { DomainEvent } from "../../../../../Shared/Domain/Event/DomainEvent";
+import { DomainEvent } from '../../../../../Shared/Domain/Event/DomainEvent';
 
 export class InvestmentPortfolioCleared extends InvestmentPortfolioEvent {
     constructor({

@@ -8,4 +8,3 @@ export class SearchInvestmentOrdersResponse implements QueryResponse {
     this.orders = orders;
   }
 }
-  

@@ -1,5 +1,5 @@
-import { DomainEvent } from "../../../../../Shared/Domain/Event/DomainEvent";
-import { InvestmentOrderDTO } from "../../Model/InvestmentOrderDTO";
+import { DomainEvent } from '../../../../../Shared/Domain/Event/DomainEvent';
+import { InvestmentOrderDTO } from '../../Model/InvestmentOrderDTO';
 
 export type InvestmentOrderEventBody = {
     readonly eventName: string;
@@ -25,7 +25,7 @@ export class InvestmentOrderEvent extends DomainEvent {
     }) {
         const buildedEventName = `${InvestmentOrderEvent.BASE_EVENT_NAME}.${eventName}`;
         super(buildedEventName, order.id, eventId, occurredOn);
-        
+
         this.order = order;
         this.eventName = buildedEventName;
     }

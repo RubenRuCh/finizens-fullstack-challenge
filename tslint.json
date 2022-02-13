@@ -12,7 +12,7 @@
       "ter-max-len": [
         true,
         {
-          "code": 120,
+          "code": 140,
           "tabWidth": 2,
           "ignoreImports": true,
           "ignoreUrls": true,

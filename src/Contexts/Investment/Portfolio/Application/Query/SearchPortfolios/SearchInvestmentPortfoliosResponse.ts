@@ -8,4 +8,3 @@ export class SearchInvestmentPortfoliosResponse implements QueryResponse {
     this.portfolios = portfolios;
   }
 }
-  

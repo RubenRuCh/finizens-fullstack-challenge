@@ -1,7 +1,7 @@
-import { DomainEvent } from "../../../Domain/Event/DomainEvent";
-import { DomainEventMapping } from "../../../Domain/Event/DomainEventMapping";
-import { DomainEventSubscriber } from "../../../Domain/Event/DomainEventSubscriber";
-import { EventBus } from "../../../Domain/Event/EventBus";
+import { DomainEvent } from '../../../Domain/Event/DomainEvent';
+import { DomainEventMapping } from '../../../Domain/Event/DomainEventMapping';
+import { DomainEventSubscriber } from '../../../Domain/Event/DomainEventSubscriber';
+import { EventBus } from '../../../Domain/Event/EventBus';
 
 type Subscription = {
   boundedCallback: Function;
@@ -22,7 +22,7 @@ export class InMemorySyncEventBus implements EventBus {
 
     events.map(event => {
       const subscribers = this.subscriptions.get(event.eventName);
-      
+
       if (subscribers) {
         return subscribers.map(subscriber => executions.push(subscriber.boundedCallback(event)));
       }

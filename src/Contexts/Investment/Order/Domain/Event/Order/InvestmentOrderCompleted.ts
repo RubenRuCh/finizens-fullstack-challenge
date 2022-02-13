@@ -1,6 +1,6 @@
-import { DomainEvent } from "../../../../../Shared/Domain/Event/DomainEvent";
-import { InvestmentOrderDTO } from "../../Model/InvestmentOrderDTO";
-import { InvestmentOrderEvent, InvestmentOrderEventBody } from "./InvestmentOrderEvent";
+import { DomainEvent } from '../../../../../Shared/Domain/Event/DomainEvent';
+import { InvestmentOrderDTO } from '../../Model/InvestmentOrderDTO';
+import { InvestmentOrderEvent, InvestmentOrderEventBody } from './InvestmentOrderEvent';
 
 export class InvestmentOrderCompleted extends InvestmentOrderEvent {
     constructor({

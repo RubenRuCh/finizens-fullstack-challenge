@@ -1,6 +1,6 @@
-import { Query } from "../../Domain/CQRS/Query/Query";
-import { QueryHandler } from "../../Domain/CQRS/Query/QueryHandler";
-import { QueryNotRegisteredError } from "../../Domain/CQRS/Query/QueryNotRegisteredError";
+import { Query } from '../../Domain/CQRS/Query/Query';
+import { QueryHandler } from '../../Domain/CQRS/Query/QueryHandler';
+import { QueryNotRegisteredError } from '../../Domain/CQRS/Query/QueryNotRegisteredError';
 import { QueryResponse } from '../../Domain/CQRS/Query/QueryResponse';
 
 export class QueryHandlersInformation {

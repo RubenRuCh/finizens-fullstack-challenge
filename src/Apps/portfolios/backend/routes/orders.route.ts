@@ -5,7 +5,7 @@ export enum OrdersEndpoints {
     GetNonCompleted = '/non-completed/:portfolioId',
     CreateNew = '/',
     UpdateOne = '/:orderId',
-};
+}
 
 const router: Router = express.Router();
 
@@ -24,7 +24,6 @@ router.post(
     //   new PostOrderController().run(req, res)
     )),
 );
-
 
 router.patch(
     OrdersEndpoints.UpdateOne,

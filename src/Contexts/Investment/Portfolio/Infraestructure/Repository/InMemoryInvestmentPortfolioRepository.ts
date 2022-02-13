@@ -1,11 +1,11 @@
 import { InvestmentAllocationsMother } from './../../../../../../tests/Contexts/Investment/Portfolio/Domain/Model/InvestmentAllocationsMother';
 import { InvestmentPortfolio } from './../../Domain/Model/Portfolio/InvestmentPortfolio';
-import { Criteria } from "../../../../Shared/Domain/Criteria/Criteria";
-import { Nullable } from "../../../../Shared/Domain/Nullable";
-import { InvestmentPortfolioId } from "../../../Shared/Domain/ValueObject/InvestmentPortfolioId";
-import { InvestmentPortfolioRepository } from "../../Domain/Model/InvestmentPortfolioRepository";
+import { Criteria } from '../../../../Shared/Domain/Criteria/Criteria';
+import { Nullable } from '../../../../Shared/Domain/Nullable';
+import { InvestmentPortfolioId } from '../../../Shared/Domain/ValueObject/InvestmentPortfolioId';
+import { InvestmentPortfolioRepository } from '../../Domain/Model/InvestmentPortfolioRepository';
 
-export const initialPortfolioId = new InvestmentPortfolioId('1828749d-09e9-472b-9273-0ef9196bfc66')
+export const initialPortfolioId = new InvestmentPortfolioId('1828749d-09e9-472b-9273-0ef9196bfc66');
 const initialAllocations = InvestmentAllocationsMother.random();
 const initialPortfolio = new InvestmentPortfolio(initialPortfolioId, initialAllocations);
 
@@ -24,7 +24,7 @@ export class InMemoryInvestmentPortfolioRepository implements InvestmentPortfoli
 
         const index = portfolios.findIndex(portfolio => portfolio.id.isEqual(portfolioToSave.id));
         portfolios[index] = portfolioToSave;
-        
+
         InMemoryInvestmentPortfolioRepository.portfolios = portfolios;
     }
 
@@ -34,7 +34,8 @@ export class InMemoryInvestmentPortfolioRepository implements InvestmentPortfoli
     }
 
     public async getById(portfolioId: InvestmentPortfolioId): Promise<Nullable<InvestmentPortfolio>> {
-        const portfolio = InMemoryInvestmentPortfolioRepository.portfolios.find(portfolio => portfolio.id.isEqual(portfolioId));
+        const portfolio = InMemoryInvestmentPortfolioRepository.portfolios
+            .find(storedPortfolio => storedPortfolio.id.isEqual(portfolioId));
 
         if (!portfolio) {
             return null;

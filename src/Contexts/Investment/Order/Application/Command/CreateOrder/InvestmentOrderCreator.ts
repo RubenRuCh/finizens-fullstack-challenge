@@ -1,15 +1,15 @@
 import { InvestmentOrderCannotSellMoreSharesThanAvailableInAllocationException } from './../../../Domain/Exception/InvestmentOrderCannotSellMoreSharesThanAvailableInAllocationException';
 import { InvestmentAllocationNotFoundException } from './../../../../Portfolio/Domain/Exception/Allocation/InvestmentAllocationNotFoundException';
 import { InvestmentAllocation } from './../../../../Portfolio/Domain/Model/Allocation/InvestmentAllocation';
-import { EventBus } from "../../../../../Shared/Domain/Event/EventBus";
-import { InvestmentAllocationId } from "../../../../Shared/Domain/ValueObject/InvestmentAllocationId";
-import { InvestmentPortfolioId } from "../../../../Shared/Domain/ValueObject/InvestmentPortfolioId";
-import { InvestmentShares } from "../../../../Shared/Domain/ValueObject/InvestmentShares";
-import { InvestmentOrder } from "../../../Domain/Model/InvestmentOrder";
-import { InvestmentOrderRepository } from "../../../Domain/Model/InvestmentOrderRepository";
-import { InvestmentOrderId } from "../../../Domain/ValueObject/InvestmentOrderId";
-import { InvestmentOrderStatus } from "../../../Domain/ValueObject/InvestmentOrderStatus";
-import { InvestmentOrderType } from "../../../Domain/ValueObject/InvestmentOrderType";
+import { EventBus } from '../../../../../Shared/Domain/Event/EventBus';
+import { InvestmentAllocationId } from '../../../../Shared/Domain/ValueObject/InvestmentAllocationId';
+import { InvestmentPortfolioId } from '../../../../Shared/Domain/ValueObject/InvestmentPortfolioId';
+import { InvestmentShares } from '../../../../Shared/Domain/ValueObject/InvestmentShares';
+import { InvestmentOrder } from '../../../Domain/Model/InvestmentOrder';
+import { InvestmentOrderRepository } from '../../../Domain/Model/InvestmentOrderRepository';
+import { InvestmentOrderId } from '../../../Domain/ValueObject/InvestmentOrderId';
+import { InvestmentOrderStatus } from '../../../Domain/ValueObject/InvestmentOrderStatus';
+import { InvestmentOrderType } from '../../../Domain/ValueObject/InvestmentOrderType';
 import { InvestmentPortfolio } from '../../../../Portfolio/Domain/Model/Portfolio/InvestmentPortfolio';
 import { FindInvestmentPortfolioByIdQueryHandler } from '../../../../Portfolio/Application/Query/FindPortfolio/FindInvestmentPortfolioByIdQueryHandler';
 import { FindInvestmentPortfolioByIdQuery } from '../../../../Portfolio/Application/Query/FindPortfolio/FindInvestmentPortfolioByIdQuery';
@@ -28,7 +28,7 @@ export class InvestmentOrderCreator {
     private eventBus: EventBus;
 
     constructor(
-        repository: InvestmentOrderRepository, 
+        repository: InvestmentOrderRepository,
         findPortfolioByIdHandler: FindInvestmentPortfolioByIdQueryHandler,
         eventBus: EventBus
     ) {
@@ -38,7 +38,7 @@ export class InvestmentOrderCreator {
     }
 
     async run({ id, portfolioId, allocationId, shares, type }: Params): Promise<void> {
-        if(type.isSell) {
+        if (type.isSell) {
             const allocation = await this.findAllocation(portfolioId, allocationId);
             this.ensureSellIsViable(allocation, shares);
         }
@@ -51,18 +51,18 @@ export class InvestmentOrderCreator {
             type,
             InvestmentOrderStatus.pending()
         );
-   
+
         await this.repository.save(order);
         await this.eventBus.publish(order.pullDomainEvents());
     }
 
     private ensureSellIsViable(allocation: InvestmentAllocation, sharesToSell: InvestmentShares): void {
-        const isSellViable = InvestmentOrder.isSellViable({ 
+        const isSellViable = InvestmentOrder.isSellViable({
             sharesToSell,
-            availableShares: allocation.shares 
+            availableShares: allocation.shares
         });
 
-        if(!isSellViable) {
+        if (!isSellViable) {
             throw new InvestmentOrderCannotSellMoreSharesThanAvailableInAllocationException(sharesToSell.value.toString());
         }
     }
@@ -72,7 +72,7 @@ export class InvestmentOrderCreator {
 
         const allocation = portfolio.getAllocation(allocationId);
 
-        if(!allocation) {
+        if (!allocation) {
             throw new InvestmentAllocationNotFoundException(allocationId.value);
         }
 

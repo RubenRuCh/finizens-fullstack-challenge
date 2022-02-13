@@ -15,7 +15,7 @@ export class Server {
     readonly port: string;
     private logger: Logger;
     httpServer?: http.Server;
-  
+
     constructor(port: string) {
       this.port = port;
       this.logger = new WinstonLogger();
@@ -31,13 +31,13 @@ export class Server {
       router.use(errorHandler());
       this.express.use(router);
       registerRoutes(router);
-  
+
       router.use((err: Error, _req: Request, res: Response, _next: Function) => {
         this.logger.error(err);
         res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
       });
     }
-  
+
     async listen(): Promise<void> {
       return new Promise(resolve => {
         this.httpServer = this.express.listen(this.port, () => {
@@ -49,7 +49,7 @@ export class Server {
         });
       });
     }
-  
+
     async stop(): Promise<void> {
       return new Promise((resolve, reject) => {
         if (this.httpServer) {
@@ -61,9 +61,8 @@ export class Server {
                 return resolve();
           });
         }
-  
+
         return resolve();
       });
     }
   }
-  

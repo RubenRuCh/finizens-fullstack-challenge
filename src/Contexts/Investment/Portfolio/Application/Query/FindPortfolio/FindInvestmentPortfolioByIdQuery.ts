@@ -1,4 +1,4 @@
-import { Query } from "../../../../../Shared/Domain/CQRS/Query/Query";
+import { Query } from '../../../../../Shared/Domain/CQRS/Query/Query';
 
 export class FindInvestmentPortfolioByIdQuery implements Query {
   readonly portfolioId: string;
@@ -9,4 +9,3 @@ export class FindInvestmentPortfolioByIdQuery implements Query {
     this.portfolioId = portfolioId;
   }
 }
-  

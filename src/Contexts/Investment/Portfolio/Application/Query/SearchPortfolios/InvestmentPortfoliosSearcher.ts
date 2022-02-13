@@ -1,10 +1,10 @@
-import { Criteria } from "../../../../../Shared/Domain/Criteria/Criteria";
-import { Filters } from "../../../../../Shared/Domain/Criteria/Filters";
-import { Order } from "../../../../../Shared/Domain/Criteria/Order";
-import { OrderBy } from "../../../../../Shared/Domain/Criteria/OrderBy";
-import { OrderType, OrderTypes } from "../../../../../Shared/Domain/Criteria/OrderType";
-import { InvestmentPortfolioRepository } from "../../../Domain/Model/InvestmentPortfolioRepository";
-import { SearchInvestmentPortfoliosResponse } from "./SearchInvestmentPortfoliosResponse";
+import { Criteria } from '../../../../../Shared/Domain/Criteria/Criteria';
+import { Filters } from '../../../../../Shared/Domain/Criteria/Filters';
+import { Order } from '../../../../../Shared/Domain/Criteria/Order';
+import { OrderBy } from '../../../../../Shared/Domain/Criteria/OrderBy';
+import { OrderType, OrderTypes } from '../../../../../Shared/Domain/Criteria/OrderType';
+import { InvestmentPortfolioRepository } from '../../../Domain/Model/InvestmentPortfolioRepository';
+import { SearchInvestmentPortfoliosResponse } from './SearchInvestmentPortfoliosResponse';
 
 export class InvestmentPortfoliosSearcher {
   constructor(private repository: InvestmentPortfolioRepository) {}
@@ -23,4 +23,3 @@ export class InvestmentPortfoliosSearcher {
     return new SearchInvestmentPortfoliosResponse(portfolios);
   }
 }
-  

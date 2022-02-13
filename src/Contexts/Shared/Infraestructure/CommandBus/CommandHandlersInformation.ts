@@ -1,6 +1,6 @@
-import { Command } from "../../Domain/CQRS/Command/Command";
-import { CommandHandler } from "../../Domain/CQRS/Command/CommandHandler";
-import { CommandNotRegisteredError } from "../../Domain/CQRS/Command/CommandNotRegisteredError";
+import { Command } from '../../Domain/CQRS/Command/Command';
+import { CommandHandler } from '../../Domain/CQRS/Command/CommandHandler';
+import { CommandNotRegisteredError } from '../../Domain/CQRS/Command/CommandNotRegisteredError';
 
 export class CommandHandlersInformation {
   private commandHandlersMap: Map<Command, CommandHandler<Command>>;

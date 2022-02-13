@@ -1,5 +1,5 @@
-import { InvestmentOrderStatusValue } from "../ValueObject/InvestmentOrderStatus";
-import { InvestmentOrderTypeValue } from "../ValueObject/InvestmentOrderType";
+import { InvestmentOrderStatusValue } from '../ValueObject/InvestmentOrderStatus';
+import { InvestmentOrderTypeValue } from '../ValueObject/InvestmentOrderType';
 
 export interface InvestmentOrderDTO  {
   id: string;

@@ -1,10 +1,11 @@
-import { Query } from "../../../../../Shared/Domain/CQRS/Query/Query";
-import { QueryHandler } from "../../../../../Shared/Domain/CQRS/Query/QueryHandler";
-import { InvestmentPortfoliosSearcher } from "./InvestmentPortfoliosSearcher";
-import { SearchInvestmentPortfoliosQuery } from "./SearchInvestmentPortfoliosQuery";
-import { SearchInvestmentPortfoliosResponse } from "./SearchInvestmentPortfoliosResponse";
+import { Query } from '../../../../../Shared/Domain/CQRS/Query/Query';
+import { QueryHandler } from '../../../../../Shared/Domain/CQRS/Query/QueryHandler';
+import { InvestmentPortfoliosSearcher } from './InvestmentPortfoliosSearcher';
+import { SearchInvestmentPortfoliosQuery } from './SearchInvestmentPortfoliosQuery';
+import { SearchInvestmentPortfoliosResponse } from './SearchInvestmentPortfoliosResponse';
 
-export class SearchInvestmentPortfoliosQueryHandler implements QueryHandler<SearchInvestmentPortfoliosQuery, SearchInvestmentPortfoliosResponse> {
+export class SearchInvestmentPortfoliosQueryHandler
+implements QueryHandler<SearchInvestmentPortfoliosQuery, SearchInvestmentPortfoliosResponse> {
     constructor(private searcher: InvestmentPortfoliosSearcher) {}
 
     subscribedTo(): Query {

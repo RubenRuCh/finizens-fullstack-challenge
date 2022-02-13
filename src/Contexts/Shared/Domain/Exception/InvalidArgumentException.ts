@@ -1,4 +1,4 @@
-import { BaseException } from "./BaseException";
+import { BaseException } from './BaseException';
 
 export class InvalidArgumentException extends BaseException {
     protected errorCode(): string {

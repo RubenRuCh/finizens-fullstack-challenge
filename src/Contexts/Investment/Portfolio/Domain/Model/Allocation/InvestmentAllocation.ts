@@ -1,11 +1,11 @@
 import { InvestmentAllocationDTO } from './InvestmentAllocationDTO';
-import { InvestmentShares } from "../../../../Shared/Domain/ValueObject/InvestmentShares";
+import { InvestmentShares } from '../../../../Shared/Domain/ValueObject/InvestmentShares';
 import { InvestmentAllocationId } from '../../../../Shared/Domain/ValueObject/InvestmentAllocationId';
 
 export class InvestmentAllocation {
     private _id: InvestmentAllocationId;
     private _shares: InvestmentShares;
-  
+
     constructor(id: InvestmentAllocationId, shares: InvestmentShares) {
       this._id = id;
       this._shares = shares;
@@ -31,7 +31,7 @@ export class InvestmentAllocation {
         new InvestmentShares(plainData.shares)
       );
     }
-  
+
     toDTO(): InvestmentAllocationDTO {
       return {
         id: this.id.value,

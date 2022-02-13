@@ -1,5 +1,5 @@
 import { InvestmentPortfolioDTO } from './../../Model/Portfolio/InvestmentPortfolioDTO';
-import { DomainEvent } from "../../../../../Shared/Domain/Event/DomainEvent";
+import { DomainEvent } from '../../../../../Shared/Domain/Event/DomainEvent';
 
 export type InvestmentPortfolioEventBody = {
     readonly eventName: string;
@@ -25,7 +25,7 @@ export class InvestmentPortfolioEvent extends DomainEvent {
     }) {
         const buildedEventName = `${InvestmentPortfolioEvent.BASE_EVENT_NAME}.${eventName}`;
         super(buildedEventName, portfolio.id, eventId, occurredOn);
-        
+
         this.portfolio = portfolio;
         this.eventName = buildedEventName;
     }

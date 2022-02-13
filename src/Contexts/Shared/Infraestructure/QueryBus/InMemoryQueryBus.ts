@@ -1,6 +1,6 @@
-import { Query } from "../../Domain/CQRS/Query/Query";
-import { QueryBus } from "../../Domain/CQRS/Query/QueryBus";
-import { QueryHandlersInformation } from "./QueryHandlersInformation";
+import { Query } from '../../Domain/CQRS/Query/Query';
+import { QueryBus } from '../../Domain/CQRS/Query/QueryBus';
+import { QueryHandlersInformation } from './QueryHandlersInformation';
 import { QueryResponse } from '../../Domain/CQRS/Query/QueryResponse';
 
 export class InMemoryQueryBus implements QueryBus {

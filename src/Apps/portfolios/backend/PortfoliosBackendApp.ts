@@ -65,13 +65,13 @@ export class PortfoliosBackendApp {
 
     const inMemoryPortfolioRepo = new InMemoryInvestmentPortfolioRepository();
     const inMemoryOrderRepo = new InMemoryInvestmentOrderRepository();
-    
+
     const subscribers: Array<DomainEventSubscriber<DomainEvent>> = [];
 
     subscribers.push(new DeleteAllocationWhenSharesIsZeroOnAllocationUpdated(
       new InvestmentAllocationEraser(inMemoryPortfolioRepo, eventBus)
     ));
-    
+
     subscribers.push(new UpdateInvestmentPortfolioAllocationsOnOrderCompleted(
       new InvestmentAllocationCreator(inMemoryPortfolioRepo, eventBus),
       new InvestmentPortfolioFinder(inMemoryPortfolioRepo),
@@ -124,14 +124,14 @@ export function prepareCommandHandlers(): CommandHandlersInformation {
 
   commandHandlers.push(new CreateInvestmentOrderCommandHandler(
     new InvestmentOrderCreator(
-      inMemoryOrderRepo, 
+      inMemoryOrderRepo,
       new FindInvestmentPortfolioByIdQueryHandler(
         new InvestmentPortfolioFinder(inMemoryPortfolioRepo),
-      ), 
+      ),
       eventBus
     ),
   ));
-  
+
   commandHandlers.push(new DeleteInvestmentOrdersOfPortfolioCommandHandler(
     new InvestmentOrdersOfPortfolioEraser(inMemoryOrderRepo),
   ));

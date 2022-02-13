@@ -1,14 +1,14 @@
-import { DomainEventClass } from "../../../../../Shared/Domain/Event/DomainEvent";
-import { DomainEventSubscriber } from "../../../../../Shared/Domain/Event/DomainEventSubscriber";
-import { InvestmentShares } from "../../../../Shared/Domain/ValueObject/InvestmentShares";
-import { InvestmentAllocationUpdated } from "../../../Domain/Event/Allocation/InvestmentAllocationUpdated";
-import { DeleteInvestmentAllocationCommand } from "./DeleteInvestmentAllocationCommand";
-import { DeleteInvestmentAllocationCommandHandler } from "./DeleteInvestmentAllocationCommandHandler";
-import { DeleteInvestmentAllocationRequest } from "./DeleteInvestmentAllocationRequest";
-import { InvestmentAllocationEraser } from "./InvestmentAllocationEraser";
+import { DomainEventClass } from '../../../../../Shared/Domain/Event/DomainEvent';
+import { DomainEventSubscriber } from '../../../../../Shared/Domain/Event/DomainEventSubscriber';
+import { InvestmentShares } from '../../../../Shared/Domain/ValueObject/InvestmentShares';
+import { InvestmentAllocationUpdated } from '../../../Domain/Event/Allocation/InvestmentAllocationUpdated';
+import { DeleteInvestmentAllocationCommand } from './DeleteInvestmentAllocationCommand';
+import { DeleteInvestmentAllocationCommandHandler } from './DeleteInvestmentAllocationCommandHandler';
+import { DeleteInvestmentAllocationRequest } from './DeleteInvestmentAllocationRequest';
+import { InvestmentAllocationEraser } from './InvestmentAllocationEraser';
 
 export class DeleteAllocationWhenSharesIsZeroOnAllocationUpdated implements DomainEventSubscriber<InvestmentAllocationUpdated> {
-  
+
   private handler: DeleteInvestmentAllocationCommandHandler;
 
   constructor(private allocationEraser: InvestmentAllocationEraser) {
@@ -35,7 +35,6 @@ export class DeleteAllocationWhenSharesIsZeroOnAllocationUpdated implements Doma
 
     const command = new DeleteInvestmentAllocationCommand(request);
 
-    this.handler.handle(command)
+    this.handler.handle(command);
   }
 }
-  

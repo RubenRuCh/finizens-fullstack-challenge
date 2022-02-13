@@ -1,4 +1,4 @@
-import { BaseException } from "../../../../../Shared/Domain/Exception/BaseException";
+import { BaseException } from '../../../../../Shared/Domain/Exception/BaseException';
 
 export class InvestmentAllocationNotFoundException extends BaseException {
     protected errorCode(): string {

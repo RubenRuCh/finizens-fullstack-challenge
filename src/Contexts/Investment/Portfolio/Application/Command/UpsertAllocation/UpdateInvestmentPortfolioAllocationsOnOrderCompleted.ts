@@ -1,23 +1,23 @@
 import { InvestmentPortfolioId } from './../../../../Shared/Domain/ValueObject/InvestmentPortfolioId';
-import { DomainEventClass } from "../../../../../Shared/Domain/Event/DomainEvent";
-import { DomainEventSubscriber } from "../../../../../Shared/Domain/Event/DomainEventSubscriber";
-import { InvestmentOrderCompleted } from "../../../../Order/Domain/Event/Order/InvestmentOrderCompleted";
-import { InvestmentAllocationId } from "../../../../Shared/Domain/ValueObject/InvestmentAllocationId";
-import { InvestmentShares } from "../../../../Shared/Domain/ValueObject/InvestmentShares";
-import { InvestmentAllocation } from "../../../Domain/Model/Allocation/InvestmentAllocation";
-import { InvestmentPortfolio } from "../../../Domain/Model/Portfolio/InvestmentPortfolio";
-import { FindInvestmentPortfolioByIdQuery } from "../../Query/FindPortfolio/FindInvestmentPortfolioByIdQuery";
-import { FindInvestmentPortfolioByIdQueryHandler } from "../../Query/FindPortfolio/FindInvestmentPortfolioByIdQueryHandler";
-import { InvestmentPortfolioFinder } from "../../Query/FindPortfolio/InvestmentPortfolioFinder";
-import { CreateInvestmentAllocationCommandHandler } from "./CreateInvestmentAllocationCommandHandler";
-import { InvestmentAllocationCreator } from "./InvestmentAllocationCreator";
+import { DomainEventClass } from '../../../../../Shared/Domain/Event/DomainEvent';
+import { DomainEventSubscriber } from '../../../../../Shared/Domain/Event/DomainEventSubscriber';
+import { InvestmentOrderCompleted } from '../../../../Order/Domain/Event/Order/InvestmentOrderCompleted';
+import { InvestmentAllocationId } from '../../../../Shared/Domain/ValueObject/InvestmentAllocationId';
+import { InvestmentShares } from '../../../../Shared/Domain/ValueObject/InvestmentShares';
+import { InvestmentAllocation } from '../../../Domain/Model/Allocation/InvestmentAllocation';
+import { InvestmentPortfolio } from '../../../Domain/Model/Portfolio/InvestmentPortfolio';
+import { FindInvestmentPortfolioByIdQuery } from '../../Query/FindPortfolio/FindInvestmentPortfolioByIdQuery';
+import { FindInvestmentPortfolioByIdQueryHandler } from '../../Query/FindPortfolio/FindInvestmentPortfolioByIdQueryHandler';
+import { InvestmentPortfolioFinder } from '../../Query/FindPortfolio/InvestmentPortfolioFinder';
+import { CreateInvestmentAllocationCommandHandler } from './CreateInvestmentAllocationCommandHandler';
+import { InvestmentAllocationCreator } from './InvestmentAllocationCreator';
 import { Nullable } from '../../../../../Shared/Domain/Nullable';
 import { InvestmentOrder } from '../../../../Order/Domain/Model/InvestmentOrder';
 import { CreateInvestmentAllocationRequest } from './CreateInvestmentAllocationRequest';
 import { CreateInvestmentAllocationCommand } from './CreateInvestmentAllocationCommand';
 
 export class UpdateInvestmentPortfolioAllocationsOnOrderCompleted implements DomainEventSubscriber<InvestmentOrderCompleted> {
-  
+
   private createAllocationHandler: CreateInvestmentAllocationCommandHandler;
   private findPortfolioByIdHandler: FindInvestmentPortfolioByIdQueryHandler;
 
@@ -50,10 +50,13 @@ export class UpdateInvestmentPortfolioAllocationsOnOrderCompleted implements Dom
 
     const command = new CreateInvestmentAllocationCommand(request);
 
-    this.createAllocationHandler.handle(command)
+    this.createAllocationHandler.handle(command);
   }
 
-  private async getAllocation(portfolioId: InvestmentPortfolioId, allocationId: InvestmentAllocationId): Promise<Nullable<InvestmentAllocation>> {
+  private async getAllocation(
+    portfolioId: InvestmentPortfolioId,
+    allocationId: InvestmentAllocationId
+  ): Promise<Nullable<InvestmentAllocation>> {
     const portfolio = await this.findPortfolio(portfolioId);
 
     return portfolio.getAllocation(allocationId);
@@ -65,4 +68,3 @@ export class UpdateInvestmentPortfolioAllocationsOnOrderCompleted implements Dom
     return queryResponse.portfolio;
   }
 }
-  

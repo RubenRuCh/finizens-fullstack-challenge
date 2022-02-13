@@ -16,6 +16,7 @@
     "test:unit": "NODE_ENV=test jest",
     "test:unit:watch": "npx jest --watchAll=true",
     "lint": "tslint src/**/*.ts{,x}",
+    "lint:fix": "npx tslint src/**/*.ts{,x} --fix",
     "start:portfolios:backend": "NODE_ENV=production node dist/src/Apps/portfolios/backend/start",
     "build": "npm run build:clean && npm run build:tsc && npm run build:di",
     "build:tsc": "tsc -p tsconfig.prod.json",

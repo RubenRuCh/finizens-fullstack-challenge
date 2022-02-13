@@ -1,4 +1,4 @@
-import { ValueObject } from "./ValueObject";
+import { ValueObject } from './ValueObject';
 
 export abstract class StringValueObject extends ValueObject<string> {
     constructor(value: string) {
@@ -6,4 +6,3 @@ export abstract class StringValueObject extends ValueObject<string> {
     }
 
   }
-  

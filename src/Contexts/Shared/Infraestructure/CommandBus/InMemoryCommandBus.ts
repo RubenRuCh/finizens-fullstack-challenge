@@ -1,6 +1,6 @@
-import { Command } from "../../Domain/CQRS/Command/Command";
-import { CommandBus } from "../../Domain/CQRS/Command/CommandBus";
-import { CommandHandlersInformation } from "./CommandHandlersInformation";
+import { Command } from '../../Domain/CQRS/Command/Command';
+import { CommandBus } from '../../Domain/CQRS/Command/CommandBus';
+import { CommandHandlersInformation } from './CommandHandlersInformation';
 
 export class InMemoryCommandBus implements CommandBus {
   constructor(private commandHandlersInformation: CommandHandlersInformation) {}

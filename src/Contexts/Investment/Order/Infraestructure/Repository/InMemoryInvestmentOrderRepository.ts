@@ -1,11 +1,11 @@
 import { InvestmentOrderMother } from './../../../../../../tests/Contexts/Investment/Order/Domain/Model/InvestmentOrderMother';
 import { InvestmentOrderNotFoundException } from './../../Domain/Exception/InvestmentOrderNotFoundException';
-import { Criteria } from "../../../../Shared/Domain/Criteria/Criteria";
-import { Nullable } from "../../../../Shared/Domain/Nullable";
-import { InvestmentPortfolioId } from "../../../Shared/Domain/ValueObject/InvestmentPortfolioId";
-import { InvestmentOrder } from "../../Domain/Model/InvestmentOrder";
-import { InvestmentOrderRepository } from "../../Domain/Model/InvestmentOrderRepository";
-import { InvestmentOrderId } from "../../Domain/ValueObject/InvestmentOrderId";
+import { Criteria } from '../../../../Shared/Domain/Criteria/Criteria';
+import { Nullable } from '../../../../Shared/Domain/Nullable';
+import { InvestmentPortfolioId } from '../../../Shared/Domain/ValueObject/InvestmentPortfolioId';
+import { InvestmentOrder } from '../../Domain/Model/InvestmentOrder';
+import { InvestmentOrderRepository } from '../../Domain/Model/InvestmentOrderRepository';
+import { InvestmentOrderId } from '../../Domain/ValueObject/InvestmentOrderId';
 import { initialPortfolioId } from '../../../Portfolio/Infraestructure/Repository/InMemoryInvestmentPortfolioRepository';
 
 const initialPendingSellOrder = InvestmentOrderMother.withPortfolioId(InvestmentOrderMother.pendingSell(), initialPortfolioId);
@@ -36,7 +36,7 @@ export class InMemoryInvestmentOrderRepository implements InvestmentOrderReposit
 
         const index = orders.findIndex(order => order.id.isEqual(orderToSave.id));
         orders[index] = orderToSave;
-        
+
         InMemoryInvestmentOrderRepository.orders = orders;
     }
 
@@ -65,7 +65,7 @@ export class InMemoryInvestmentOrderRepository implements InvestmentOrderReposit
     }
 
     public async getById(orderId: InvestmentOrderId): Promise<Nullable<InvestmentOrder>> {
-        const order = InMemoryInvestmentOrderRepository.orders.find(order => order.id.isEqual(orderId));
+        const order = InMemoryInvestmentOrderRepository.orders.find(storedOrder => storedOrder.id.isEqual(orderId));
 
         if (!order) {
             return null;

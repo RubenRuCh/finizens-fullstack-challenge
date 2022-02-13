@@ -1,5 +1,5 @@
-import { Command } from "../../../../../Shared/Domain/CQRS/Command/Command";
-import { CreateInvestmentOrderRequest } from "./CreateInvestmentOrderRequest";
+import { Command } from '../../../../../Shared/Domain/CQRS/Command/Command';
+import { CreateInvestmentOrderRequest } from './CreateInvestmentOrderRequest';
 import { InvestmentOrderTypeValue } from '../../../Domain/ValueObject/InvestmentOrderType';
 
 export class CreateInvestmentOrderCommand extends Command {

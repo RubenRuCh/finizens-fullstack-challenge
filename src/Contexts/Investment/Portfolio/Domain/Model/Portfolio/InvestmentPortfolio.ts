@@ -2,8 +2,8 @@ import { InvestmentPortfolioCreated } from './../../Event/Portfolio/InvestmentPo
 import { InvestmentPortfolioCleared } from './../../Event/Portfolio/InvestmentPortfolioCleared';
 import { InvestmentAllocation } from './../Allocation/InvestmentAllocation';
 import { InvestmentPortfolioDTO } from './InvestmentPortfolioDTO';
-import { AggregateRoot } from "../../../../../Shared/Domain/AggregateRoot";
-import { InvestmentPortfolioId } from "../../../../Shared/Domain/ValueObject/InvestmentPortfolioId";
+import { AggregateRoot } from '../../../../../Shared/Domain/AggregateRoot';
+import { InvestmentPortfolioId } from '../../../../Shared/Domain/ValueObject/InvestmentPortfolioId';
 import { Nullable } from '../../../../../Shared/Domain/Nullable';
 import { InvestmentShares } from '../../../../Shared/Domain/ValueObject/InvestmentShares';
 import { InvestmentAllocationCreated } from '../../Event/Allocation/InvestmentAllocationCreated';
@@ -16,7 +16,7 @@ import { InvestmentAllocationNotFoundException } from '../../Exception/Allocatio
 export class InvestmentPortfolio extends AggregateRoot {
     private _id: InvestmentPortfolioId;
     private _allocations: InvestmentAllocation[];
-  
+
     constructor(id: InvestmentPortfolioId, allocations: InvestmentAllocation[]) {
       super();
       this._id = id;
@@ -29,10 +29,10 @@ export class InvestmentPortfolio extends AggregateRoot {
       portfolio.record(new InvestmentPortfolioCreated({
         portfolio: portfolio.toDTO(),
       }));
-  
+
       return portfolio;
     }
-    
+
     public get id(): InvestmentPortfolioId {
       return this._id;
     }
@@ -45,7 +45,7 @@ export class InvestmentPortfolio extends AggregateRoot {
       allocations.forEach(allocation => {
         this.upsertAllocation(allocation.id, allocation.shares);
       });
-     
+
       return this;
     }
 
@@ -58,16 +58,16 @@ export class InvestmentPortfolio extends AggregateRoot {
     }
 
     public getAllocation(searchedAllocationId: InvestmentAllocationId): Nullable<InvestmentAllocation> {
-      const searchedAllocation = this.allocations.find(allocation => allocation.id.isEqual(searchedAllocationId))
+      const searchedAllocation = this.allocations.find(allocation => allocation.id.isEqual(searchedAllocationId));
 
       return searchedAllocation ?? null;
     }
 
     public upsertAllocation(id: InvestmentAllocationId, shares: InvestmentShares): InvestmentAllocation {
-      let searchedAllocation = this.getAllocation(id);
+      const searchedAllocation = this.getAllocation(id);
 
-      const allocation = searchedAllocation 
-        ? this.updateAllocation(searchedAllocation, shares) 
+      const allocation = searchedAllocation
+        ? this.updateAllocation(searchedAllocation, shares)
         : this.createAllocation(id, shares)
       ;
 
@@ -115,7 +115,7 @@ export class InvestmentPortfolio extends AggregateRoot {
     public deleteAllocation(allocationId: InvestmentAllocationId): void {
       const searchedAllocation = this.getAllocation(allocationId);
 
-      if(!searchedAllocation) {
+      if (!searchedAllocation) {
         throw new InvestmentAllocationNotFoundException(allocationId.value);
       }
 
@@ -137,7 +137,7 @@ export class InvestmentPortfolio extends AggregateRoot {
         plainData.allocations.map(plainAlocation => InvestmentAllocation.fromDTO(plainAlocation))
       );
     }
-  
+
     public toDTO(): InvestmentPortfolioDTO {
       return {
         id: this.id.value,

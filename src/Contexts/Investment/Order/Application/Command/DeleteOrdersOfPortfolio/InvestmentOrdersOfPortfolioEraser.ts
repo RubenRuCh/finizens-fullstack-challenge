@@ -1,5 +1,5 @@
-import { InvestmentPortfolioId } from "../../../../Shared/Domain/ValueObject/InvestmentPortfolioId";
-import { InvestmentOrderRepository } from "../../../Domain/Model/InvestmentOrderRepository";
+import { InvestmentPortfolioId } from '../../../../Shared/Domain/ValueObject/InvestmentPortfolioId';
+import { InvestmentOrderRepository } from '../../../Domain/Model/InvestmentOrderRepository';
 
 type Params = {
     portfolioId: InvestmentPortfolioId;
@@ -9,7 +9,7 @@ export class InvestmentOrdersOfPortfolioEraser {
     private repository: InvestmentOrderRepository;
 
     constructor(
-        repository: InvestmentOrderRepository, 
+        repository: InvestmentOrderRepository,
     ) {
         this.repository = repository;
     }
@@ -17,6 +17,6 @@ export class InvestmentOrdersOfPortfolioEraser {
     async run({ portfolioId }: Params): Promise<void> {
         const orders = await this.repository.getByPortfolioId(portfolioId);
 
-        await Promise.all(orders.map(order => this.repository.delete(order.id)))
+        await Promise.all(orders.map(order => this.repository.delete(order.id)));
     }
 }

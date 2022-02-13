@@ -12,6 +12,15 @@ import { InvestmentPortfolioFinder } from '../../../Contexts/Investment/Portfoli
 import { DeleteInvestmentOrdersOfPortfolioOnPortfolioCleaned } from '../../../Contexts/Investment/Order/Application/Command/DeleteOrdersOfPortfolio/DeleteInvestmentOrdersOfPortfolioOnPortfolioCleaned';
 import { InvestmentOrdersOfPortfolioEraser } from '../../../Contexts/Investment/Order/Application/Command/DeleteOrdersOfPortfolio/InvestmentOrdersOfPortfolioEraser';
 import { InMemoryInvestmentOrderRepository } from '../../../Contexts/Investment/Order/Infraestructure/Repository/InMemoryInvestmentOrderRepository';
+import { QueryHandlersInformation } from '../../../Contexts/Shared/Infraestructure/QueryBus/QueryHandlersInformation';
+import { QueryHandler } from '../../../Contexts/Shared/Domain/CQRS/Query/QueryHandler';
+import { Query } from '../../../Contexts/Shared/Domain/CQRS/Query/Query';
+import { QueryResponse } from '../../../Contexts/Shared/Domain/CQRS/Query/QueryResponse';
+import { SearchNonCompletedInvestmentOrdersByPortfolioIdQueryHandler } from '../../../Contexts/Investment/Order/Application/Query/SearchNonCompletedOrder/SearchNonCompletedInvestmentOrdersByPortfolioIdQueryHandler';
+import { NonCompletedInvestmentOrderSearcher } from '../../../Contexts/Investment/Order/Application/Query/SearchNonCompletedOrder/NonCompletedInvestmentOrderSearcher';
+import { FindInvestmentPortfolioByIdQueryHandler } from '../../../Contexts/Investment/Portfolio/Application/Query/FindPortfolio/FindInvestmentPortfolioByIdQueryHandler';
+import { SearchInvestmentPortfoliosQueryHandler } from '../../../Contexts/Investment/Portfolio/Application/Query/SearchPortfolios/SearchInvestmentPortfoliosQueryHandler';
+import { InvestmentPortfoliosSearcher } from '../../../Contexts/Investment/Portfolio/Application/Query/SearchPortfolios/InvestmentPortfoliosSearcher';
 
 export class PortfoliosBackendApp {
   private server?: Server;
@@ -65,4 +74,26 @@ export class PortfoliosBackendApp {
     eventBus.addSubscribers(subscribers);
     await eventBus.start();
   }
+}
+
+
+export function prepareQueryHandlers(): QueryHandlersInformation {
+  const inMemoryPortfolioRepo = new InMemoryInvestmentPortfolioRepository();
+  const inMemoryOrderRepo = new InMemoryInvestmentOrderRepository();
+
+  const queryHandlers: QueryHandler<Query, QueryResponse>[] = [];
+
+  queryHandlers.push(new SearchInvestmentPortfoliosQueryHandler(
+    new InvestmentPortfoliosSearcher(inMemoryPortfolioRepo),
+  ));
+
+  queryHandlers.push(new SearchNonCompletedInvestmentOrdersByPortfolioIdQueryHandler(
+    new NonCompletedInvestmentOrderSearcher(inMemoryOrderRepo),
+  ));
+
+  queryHandlers.push(new FindInvestmentPortfolioByIdQueryHandler(
+    new InvestmentPortfolioFinder(inMemoryPortfolioRepo),
+  ));
+
+  return new QueryHandlersInformation(queryHandlers);
 }

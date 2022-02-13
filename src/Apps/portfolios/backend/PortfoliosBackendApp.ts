@@ -21,6 +21,18 @@ import { NonCompletedInvestmentOrderSearcher } from '../../../Contexts/Investmen
 import { FindInvestmentPortfolioByIdQueryHandler } from '../../../Contexts/Investment/Portfolio/Application/Query/FindPortfolio/FindInvestmentPortfolioByIdQueryHandler';
 import { SearchInvestmentPortfoliosQueryHandler } from '../../../Contexts/Investment/Portfolio/Application/Query/SearchPortfolios/SearchInvestmentPortfoliosQueryHandler';
 import { InvestmentPortfoliosSearcher } from '../../../Contexts/Investment/Portfolio/Application/Query/SearchPortfolios/InvestmentPortfoliosSearcher';
+import { CommandHandlersInformation } from '../../../Contexts/Shared/Infraestructure/CommandBus/CommandHandlersInformation';
+import { CommandHandler } from '../../../Contexts/Shared/Domain/CQRS/Command/CommandHandler';
+import { Command } from '../../../Contexts/Shared/Domain/CQRS/Command/Command';
+import { CompleteInvestmentOrderCommandHandler } from '../../../Contexts/Investment/Order/Application/Command/CompleteOrder/CompleteInvestmentOrderCommandHandler';
+import { InvestmentOrderCompleter } from '../../../Contexts/Investment/Order/Application/Command/CompleteOrder/InvestmentOrderCompleter';
+import { CreateInvestmentOrderCommandHandler } from '../../../Contexts/Investment/Order/Application/Command/CreateOrder/CreateInvestmentOrderCommandHandler';
+import { InvestmentOrderCreator } from '../../../Contexts/Investment/Order/Application/Command/CreateOrder/InvestmentOrderCreator';
+import { DeleteInvestmentOrdersOfPortfolioCommandHandler } from '../../../Contexts/Investment/Order/Application/Command/DeleteOrdersOfPortfolio/DeleteInvestmentOrdersOfPortfolioCommandHandler';
+import { CreateInvestmentPortfolioCommandHandler } from '../../../Contexts/Investment/Portfolio/Application/Command/CreatePortfolio/CreateInvestmentPortfolioCommandHandler';
+import { InvestmentPortfolioCreator } from '../../../Contexts/Investment/Portfolio/Application/Command/CreatePortfolio/InvestmentPortfolioCreator';
+import { DeleteInvestmentAllocationCommandHandler } from '../../../Contexts/Investment/Portfolio/Application/Command/DeleteAllocation/DeleteInvestmentAllocationCommandHandler';
+import { CreateInvestmentAllocationCommandHandler } from '../../../Contexts/Investment/Portfolio/Application/Command/UpsertAllocation/CreateInvestmentAllocationCommandHandler';
 
 export class PortfoliosBackendApp {
   private server?: Server;
@@ -50,6 +62,7 @@ export class PortfoliosBackendApp {
 
   private async registerSubscribers() {
     const eventBus = new InMemorySyncEventBus();
+
     const inMemoryPortfolioRepo = new InMemoryInvestmentPortfolioRepository();
     const inMemoryOrderRepo = new InMemoryInvestmentOrderRepository();
     
@@ -76,7 +89,6 @@ export class PortfoliosBackendApp {
   }
 }
 
-
 export function prepareQueryHandlers(): QueryHandlersInformation {
   const inMemoryPortfolioRepo = new InMemoryInvestmentPortfolioRepository();
   const inMemoryOrderRepo = new InMemoryInvestmentOrderRepository();
@@ -96,4 +108,45 @@ export function prepareQueryHandlers(): QueryHandlersInformation {
   ));
 
   return new QueryHandlersInformation(queryHandlers);
+}
+
+export function prepareCommandHandlers(): CommandHandlersInformation {
+  const eventBus = new InMemorySyncEventBus();
+
+  const inMemoryPortfolioRepo = new InMemoryInvestmentPortfolioRepository();
+  const inMemoryOrderRepo = new InMemoryInvestmentOrderRepository();
+
+  const commandHandlers: Array<CommandHandler<Command>> = [];
+
+  commandHandlers.push(new CompleteInvestmentOrderCommandHandler(
+    new InvestmentOrderCompleter(inMemoryOrderRepo, eventBus),
+  ));
+
+  commandHandlers.push(new CreateInvestmentOrderCommandHandler(
+    new InvestmentOrderCreator(
+      inMemoryOrderRepo, 
+      new FindInvestmentPortfolioByIdQueryHandler(
+        new InvestmentPortfolioFinder(inMemoryPortfolioRepo),
+      ), 
+      eventBus
+    ),
+  ));
+  
+  commandHandlers.push(new DeleteInvestmentOrdersOfPortfolioCommandHandler(
+    new InvestmentOrdersOfPortfolioEraser(inMemoryOrderRepo),
+  ));
+
+  commandHandlers.push(new CreateInvestmentPortfolioCommandHandler(
+    new InvestmentPortfolioCreator(inMemoryPortfolioRepo, eventBus),
+  ));
+
+  commandHandlers.push(new DeleteInvestmentAllocationCommandHandler(
+    new InvestmentAllocationEraser(inMemoryPortfolioRepo, eventBus),
+  ));
+
+  commandHandlers.push(new CreateInvestmentAllocationCommandHandler(
+    new InvestmentAllocationCreator(inMemoryPortfolioRepo, eventBus),
+  ));
+
+  return new CommandHandlersInformation(commandHandlers);
 }

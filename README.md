@@ -36,6 +36,7 @@ make test-unit-watch
 - [ ] Create a real Query, Command & Event bus implementations (instead of InMemory). For example, RabbitMQ
 - [ ] Apply Criteria Pattern to optimize filters and search operations
 - [ ] Add 'Deleted Order' domain Event (for testing and to allow reacting to that event in future features)
+- [ ] Use some library for dependency-injection
 
 
 ## Instructions

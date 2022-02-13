@@ -1,5 +1,5 @@
+import { Nullable } from '../../../../../../../Contexts/Shared/Domain/Nullable';
 import { useSelector } from 'react-redux';
-import { Nullable } from '../../../../../../Contexts/Shared/Domain/Nullable';
 import { REQ_STATUS } from '../RequestStatus';
 
 export type GenericStoreType<T> = {

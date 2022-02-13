@@ -6,7 +6,6 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "rootDir": ".",
     "strict": true,
     "noEmit": true,
     "resolveJsonModule": true,
@@ -26,9 +25,9 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src/**/**.ts"
+    "src"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
   ]
 }

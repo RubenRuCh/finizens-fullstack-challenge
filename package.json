@@ -18,7 +18,6 @@
     "lint:fix": "npx tslint src/**/*.ts{,x} --fix",
     "start:portfolios:backend": "NODE_ENV=production node dist/src/Apps/portfolios/backend/start",
     "dev:portfolios:backend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/Apps/portfolios/backend/start.ts",
-    "start:portfolios:frontend": "PORT=3001 react-scripts start",
     "build:front": "react-scripts build",
     "build": "npm run build:clean && npm run build:tsc && npm run build:di",
     "build:tsc": "tsc -p tsconfig.prod.json",

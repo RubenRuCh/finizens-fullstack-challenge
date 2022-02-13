@@ -18,7 +18,7 @@ install:
 	@docker-compose run --rm $(PORTFOLIOS_BACKEND_CONTAINER_NAME) npm install $(ARGS)
 	@docker-compose run --rm $(PORTFOLIOS_BACKEND_CONTAINER_NAME) chown -R node:node .
 
-	@docker-compose run --rm $(PORTFOLIOS_FRONTEND_CONTAINER_NAME) npm install $(ARGS)
+	@docker-compose run --rm $(PORTFOLIOS_FRONTEND_CONTAINER_NAME) npm install $(ARGS) --prefix ./src/Apps/portfolios/frontend
 	@docker-compose run --rm $(PORTFOLIOS_FRONTEND_CONTAINER_NAME) chown -R node:node .
 
 .PHONY: build
@@ -38,7 +38,7 @@ start-local-portfolios-backend: setTestEnv
 
 # Portfolios - Frontend
 start-local-portfolios-frontend: setTestEnv
-	@docker-compose run --rm --service-ports $(PORTFOLIOS_FRONTEND_CONTAINER_NAME) npm run start:portfolios:frontend
+	@docker-compose run --rm --service-ports $(PORTFOLIOS_FRONTEND_CONTAINER_NAME) npm run start:portfolios:frontend --prefix ./src/Apps/portfolios/frontend
 
 # Clean containers
 clean:

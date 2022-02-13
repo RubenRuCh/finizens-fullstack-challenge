@@ -1,8 +1,10 @@
-import express, { Express, Router } from 'express';
+import express, { Express, Router, Request, Response } from 'express';
 import { AsyncHandler } from '../../../../Contexts/Shared/Infraestructure/AsyncHandler';
+import { GetPortfolioController } from '../controllers/GetPortfolioController';
+import { GetPortfoliosController } from '../controllers/GetPortfoliosController';
 
 export enum PortfoliosEndpoints {
-    GetMetadaFromAll = '/',
+    GetAll = '/',
     GetOne = '/:portfolioId',
     PutOne = '/:portfolioId',
 };
@@ -10,18 +12,16 @@ export enum PortfoliosEndpoints {
 const router: Router = express.Router();
 
 router.get(
-    PortfoliosEndpoints.GetMetadaFromAll,
+    PortfoliosEndpoints.GetAll,
     AsyncHandler((req: Request, res: Response) => (
-        console.log(req)
-    //   new GetPortfoliosMetadataController().run(req, res)
+      new GetPortfoliosController().run(req, res)
     )),
 );
 
 router.get(
     PortfoliosEndpoints.GetOne,
     AsyncHandler((req: Request, res: Response) => (
-        console.log(req)
-    //   new GetPortfolioController().run(req, res)
+      new GetPortfolioController().run(req, res)
     )),
 );
 

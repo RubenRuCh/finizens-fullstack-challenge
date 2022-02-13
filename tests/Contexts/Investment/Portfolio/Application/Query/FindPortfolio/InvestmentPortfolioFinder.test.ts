@@ -22,9 +22,10 @@ describe('InvestmentPortfolioFinder', () => {
 
     repository.whenSearchThenReturn(portfolio);
 
-    await handler.handle(query);
+    const queryResponse = await handler.handle(query);
 
     repository.assertLastSearchedPortfolioIs(portfolio.id);
+    expect(queryResponse.portfolio).toEqual(portfolio);
   });
 
   it('should throw exception if the portfolio does not exist', async () => {

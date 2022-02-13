@@ -25,11 +25,14 @@ export class InvestmentPortfolioRepositoryMock implements InvestmentPortfolioRep
       return this.mockSearchCriteria(criteria);
     }
 
+    whenSearchByCriteriaThenReturn(value: InvestmentPortfolio[]): void {
+      this.mockSearchCriteria.mockReturnValue(value);
+    }
+
     async getById(id: InvestmentPortfolioId): Promise<Nullable<InvestmentPortfolio>> {
         return this.mockSearchId(id);
     }
 
-  
     whenSearchThenReturn(value: Nullable<InvestmentPortfolio>): void {
       this.mockSearchId.mockReturnValue(value);
     }

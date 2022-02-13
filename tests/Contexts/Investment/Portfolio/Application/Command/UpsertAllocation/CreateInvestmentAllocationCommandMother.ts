@@ -1,6 +1,6 @@
-import { CreateInvestmentAllocationCommand } from '../../../../../src/Contexts/Investment/Portfolio/Application/Command/UpsertAllocation/CreateInvestmentAllocationCommand';
-import { InvestmentPortfolioIdMother } from '../../Shared/Domain/ValueObject/InvestmentPortfolioIdMother';
-import { InvestmentAllocationMother } from '../Domain/Model/InvestmentAllocationMother';
+import { CreateInvestmentAllocationCommand } from '../../../../../../../src/Contexts/Investment/Portfolio/Application/Command/UpsertAllocation/CreateInvestmentAllocationCommand';
+import { InvestmentPortfolioIdMother } from '../../../../Shared/Domain/ValueObject/InvestmentPortfolioIdMother';
+import { InvestmentAllocationMother } from '../../../Domain/Model/InvestmentAllocationMother';
 
 export class CreateInvestmentAllocationCommandMother {
     static create(
@@ -20,5 +20,5 @@ export class CreateInvestmentAllocationCommandMother {
             randomAllocation.shares.value,
         );
     }
-  }
+}
   

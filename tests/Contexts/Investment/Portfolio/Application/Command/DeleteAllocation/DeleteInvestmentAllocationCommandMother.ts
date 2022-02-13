@@ -1,6 +1,6 @@
-import { DeleteInvestmentAllocationCommand } from '../../../../../src/Contexts/Investment/Portfolio/Application/Command/DeleteAllocation/DeleteInvestmentAllocationCommand';
-import { InvestmentPortfolioIdMother } from '../../Shared/Domain/ValueObject/InvestmentPortfolioIdMother';
-import { InvestmentAllocationMother } from '../Domain/Model/InvestmentAllocationMother';
+import { DeleteInvestmentAllocationCommand } from '../../../../../../../src/Contexts/Investment/Portfolio/Application/Command/DeleteAllocation/DeleteInvestmentAllocationCommand';
+import { InvestmentPortfolioIdMother } from '../../../../Shared/Domain/ValueObject/InvestmentPortfolioIdMother';
+import { InvestmentAllocationMother } from '../../../Domain/Model/InvestmentAllocationMother';
 
 export class DeleteInvestmentAllocationCommandMother {
     static create(
@@ -18,5 +18,5 @@ export class DeleteInvestmentAllocationCommandMother {
             randomAllocation.id.value,
         );
     }
-  }
+}
   

@@ -4,6 +4,7 @@ import errorHandler from 'errorhandler';
 import express, { Request, Response } from 'express';
 import Router from 'express-promise-router';
 import helmet from 'helmet';
+import cors from 'cors';
 import * as http from 'http';
 import httpStatus from 'http-status';
 import Logger from '../../../Contexts/Shared/Domain/Logger';
@@ -31,6 +32,22 @@ export class Server {
       router.use(errorHandler());
       this.express.use(router);
       registerRoutes(router);
+
+      const envOrigins = {
+        prod: [
+
+        ],
+        dev: [
+
+        ],
+        test: [
+          'http://localhost:*',
+        ],
+    };
+
+    this.express.use(cors({
+        origin: envOrigins[process.env.NODE_ENV as ('prod' | 'dev' | 'test') || 'test'],
+    }));
 
       router.use((err: Error, _req: Request, res: Response, _next: Function) => {
         this.logger.error(err);

@@ -22,8 +22,7 @@ export class GetNonCompletedOrdersController {
         const query = new SearchNonCompletedInvestmentOrdersByPortfolioIdQuery(portfolioId);
         const queryResponse: SearchInvestmentOrdersResponse = await this.queryBus.ask(query);
 
-        const orderDTOs = queryResponse.orders.map(order => order.toDTO());
-        res.status(httpStatus.OK).send(orderDTOs);
+        res.status(httpStatus.OK).send(queryResponse.orders);
     }
 
 }

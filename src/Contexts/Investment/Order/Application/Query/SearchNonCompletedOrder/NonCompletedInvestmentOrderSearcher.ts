@@ -11,6 +11,6 @@ export class NonCompletedInvestmentOrderSearcher {
     // TODO Use criteria pattern in repo implementation to optimize performance of this filter
     const nonCompletedOrdersOfPortfolio = allOrdersOfPortfolio.filter(order => order.status.isPending);
 
-    return new SearchInvestmentOrdersResponse(nonCompletedOrdersOfPortfolio);
+    return new SearchInvestmentOrdersResponse(nonCompletedOrdersOfPortfolio.map(order => order.toDTO()));
   }
 }

@@ -65,6 +65,6 @@ export class UpdateInvestmentPortfolioAllocationsOnOrderCompleted implements Dom
   private async findPortfolio(portfolioId: InvestmentPortfolioId): Promise<InvestmentPortfolio> {
     const queryResponse = await this.findPortfolioByIdHandler.handle(new FindInvestmentPortfolioByIdQuery(portfolioId.value));
 
-    return queryResponse.portfolio;
+    return InvestmentPortfolio.fromDTO(queryResponse.portfolio);
   }
 }

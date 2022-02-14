@@ -12,7 +12,7 @@ implements QueryHandler<SearchInvestmentPortfoliosQuery, SearchInvestmentPortfol
         return SearchInvestmentPortfoliosQuery;
     }
 
-    handle(query: SearchInvestmentPortfoliosQuery): Promise<SearchInvestmentPortfoliosResponse> {
+    handle(_query: SearchInvestmentPortfoliosQuery): Promise<SearchInvestmentPortfoliosResponse> {
         return this.searcher.run();
     }
 }

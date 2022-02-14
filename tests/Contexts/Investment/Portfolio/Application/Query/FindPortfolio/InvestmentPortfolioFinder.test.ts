@@ -25,13 +25,13 @@ describe('InvestmentPortfolioFinder', () => {
     const queryResponse = await handler.handle(query);
 
     repository.assertLastSearchedPortfolioIs(portfolio.id);
-    expect(queryResponse.portfolio).toEqual(portfolio);
+    expect(queryResponse.portfolio).toEqual(portfolio.toDTO());
   });
 
   it('should throw exception if the portfolio does not exist', async () => {
     const query = FindInvestmentPortfolioByIdQueryMother.random();
 
-    repository.whenSearchThenReturn(null)
+    repository.whenSearchThenReturn(null);
 
     expect.assertions(3);
 

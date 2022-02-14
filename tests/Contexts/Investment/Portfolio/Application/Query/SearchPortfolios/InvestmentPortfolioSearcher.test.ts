@@ -20,16 +20,19 @@ describe('InvestmentPortfolioSearcher.test', () => {
     const firstPortfolio = InvestmentPortfolioMother.random();
     const secondPortfolio = InvestmentPortfolioMother.random();
     const thirdPortfolio = InvestmentPortfolioMother.random();
-    
+
     const storedPortfolios = [firstPortfolio, secondPortfolio, thirdPortfolio];
 
     repository.whenSearchByCriteriaThenReturn(storedPortfolios);
 
     const queryResponse = await handler.handle(query);
+
+    const storedPortfoliosDTOs = storedPortfolios.map(portfolio => portfolio.toDTO());
+
     expect(queryResponse.portfolios.length).toBe(3);
-    expect(queryResponse.portfolios).toEqual(storedPortfolios)
+    expect(queryResponse.portfolios).toEqual(storedPortfoliosDTOs);
   });
-  
+
   it('should return empty array if there is no portfolios stored', async () => {
     const query = SearchInvestmentPortfoliosQueryMother.random();
 
@@ -37,7 +40,7 @@ describe('InvestmentPortfolioSearcher.test', () => {
 
     const queryResponse = await handler.handle(query);
     expect(queryResponse.portfolios.length).toBe(0);
-    expect(queryResponse.portfolios).toEqual([])
+    expect(queryResponse.portfolios).toEqual([]);
   });
 
 });

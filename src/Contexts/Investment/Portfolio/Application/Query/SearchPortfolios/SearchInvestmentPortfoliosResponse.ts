@@ -1,10 +1,10 @@
 import { QueryResponse } from '../../../../../Shared/Domain/CQRS/Query/QueryResponse';
-import { InvestmentPortfolio } from '../../../Domain/Model/Portfolio/InvestmentPortfolio';
+import { InvestmentPortfolioDTO } from '../../../Domain/Model/Portfolio/InvestmentPortfolioDTO';
 
 export class SearchInvestmentPortfoliosResponse implements QueryResponse {
-  readonly portfolios: InvestmentPortfolio[];
+  readonly portfolios: InvestmentPortfolioDTO[];
 
-  constructor(portfolios: InvestmentPortfolio[]) {
+  constructor(portfolios: InvestmentPortfolioDTO[]) {
     this.portfolios = portfolios;
   }
 }

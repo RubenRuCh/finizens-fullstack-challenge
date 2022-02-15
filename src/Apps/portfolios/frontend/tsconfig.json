@@ -1,16 +1,8 @@
 {
   "compilerOptions": {
-    "module": "esnext",
-    "esModuleInterop": true,
+    "outDir": "../../../../dist/Apps/portfolios/frontend",
+    "composite": true,
     "target": "es6",
-    "noImplicitAny": true,
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "strict": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "noUnusedLocals": true,
-    "outDir": "./dist",
     "lib": [
       "dom",
       "dom.iterable",
@@ -18,16 +10,24 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "isolatedModules": true,
+    "noEmit": true,
     "jsx": "react-jsx"
   },
+  "extends": "../../../../tsconfig.json",
   "include": [
-    "src"
+    "src",
+    "../../../Contexts"
   ],
-  "exclude": [
-    "node_modules",
+  "references": [
+    { "path": "../../../Contexts" }
   ]
 }

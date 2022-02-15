@@ -2,6 +2,11 @@
 
 ## How to run the app
 
+### Build Docker image
+```
+make build
+```
+
 ### Install dependencies
 ```
 make install
@@ -19,7 +24,7 @@ It will be available in http://localhost:8000. Endpoints begin with ```/api```
 make start-local-portfolios-frontend
 ```
 
-It will be available in http://localhost:3001
+It will be available in http://localhost:3000
 
 ### Tests
 

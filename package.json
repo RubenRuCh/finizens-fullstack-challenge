@@ -18,7 +18,6 @@
     "lint:fix": "npx tslint src/**/*.ts{,x} --fix",
     "start:portfolios:backend": "NODE_ENV=production node dist/src/Apps/portfolios/backend/start",
     "dev:portfolios:backend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/Apps/portfolios/backend/start.ts",
-    "build:front": "react-scripts build",
     "build": "npm run build:clean && npm run build:tsc && npm run build:di",
     "build:tsc": "tsc -p tsconfig.prod.json",
     "build:di": "copy 'src/**/*.{json,yaml,html,png}' dist/src",
@@ -65,12 +64,6 @@
     "tslint": "^6.1.3",
     "tslint-config-prettier": "~1.18.0",
     "tslint-eslint-rules": "^5.4.0"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "husky": {
     "hooks": {

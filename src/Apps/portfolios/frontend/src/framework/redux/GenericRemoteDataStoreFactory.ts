@@ -1,4 +1,5 @@
-import { Nullable } from '../../../../../../../Contexts/Shared/Domain/Nullable';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Nullable } from '../../../../../../Contexts/Shared/Domain/Nullable';
 import { useSelector } from 'react-redux';
 import { REQ_STATUS } from '../RequestStatus';
 
@@ -10,10 +11,12 @@ export type GenericStoreType<T> = {
 
 type GenericPrebuildStore<T, GlobalStateType> = {
     reducer(state: any, action: any): GenericStoreType<T>;
-    buildStore(store: {
+    buildStore(
+        store: {
             dispatch: DispatchType<T>,
             getState(): any;
-        },     getLocalStateFn: (globalState: GlobalStateType) => GenericStoreType<T>): GenericValueStore<T, GlobalStateType>;
+        },
+        getLocalStateFn: (globalState: GlobalStateType) => GenericStoreType<T>): GenericValueStore<T, GlobalStateType>;
 };
 
 type GenericValueStore<T, GlobalStateType> = {

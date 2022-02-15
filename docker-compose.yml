@@ -20,7 +20,7 @@ services:
 
   portfolios_frontend:
     <<: *default-app
-    command: bash -c "npm run start:portfolios:frontend"
+    command: bash -c "npm run start --prefix ./src/Apps/portfolios/frontend"
     ports:
       - ${PORTFOLIOS_FRONT_PORT}:${PORTFOLIOS_FRONT_PORT}
  

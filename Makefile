@@ -5,6 +5,8 @@ ENV_FILE_DEV=.env.dev
 ENV_FILE_PROD=.env.prod
 ENV_FILE_TEST=.env.test
 
+
+
 setTestEnv:
 	sudo cp $(ENV_FILE_TEST) .env
 
@@ -38,7 +40,7 @@ start-local-portfolios-backend: setTestEnv
 
 # Portfolios - Frontend
 start-local-portfolios-frontend: setTestEnv
-	@docker-compose run --rm --service-ports $(PORTFOLIOS_FRONTEND_CONTAINER_NAME) npm run start:portfolios:frontend --prefix ./src/Apps/portfolios/frontend
+	@docker-compose run --rm --service-ports $(PORTFOLIOS_FRONTEND_CONTAINER_NAME) npm run start --prefix ./src/Apps/portfolios/frontend
 
 # Clean containers
 clean:

@@ -21,6 +21,24 @@ export class Server {
       this.port = port;
       this.logger = new WinstonLogger();
       this.express = express();
+
+
+      const envOrigins = {
+        prod: [
+
+        ],
+        dev: [
+
+        ],
+        test: [
+          'http://localhost:3000',
+        ],
+      };
+
+      this.express.use(cors({
+          origin: envOrigins[process.env.NODE_ENV as ('prod' | 'dev' | 'test') || 'test'],
+      }));
+
       this.express.use(bodyParser.json());
       this.express.use(bodyParser.urlencoded({ extended: true }));
       this.express.use(helmet.xssFilter());
@@ -33,21 +51,7 @@ export class Server {
       this.express.use(router);
       registerRoutes(router);
 
-      const envOrigins = {
-        prod: [
 
-        ],
-        dev: [
-
-        ],
-        test: [
-          'http://localhost:*',
-        ],
-    };
-
-    this.express.use(cors({
-        origin: envOrigins[process.env.NODE_ENV as ('prod' | 'dev' | 'test') || 'test'],
-    }));
 
       router.use((err: Error, _req: Request, res: Response, _next: Function) => {
         this.logger.error(err);

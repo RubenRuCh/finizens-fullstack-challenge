@@ -58,7 +58,7 @@
       "no-use-before-declare": false,
       "jsdoc-format": true,
       "one-line": [true, "check-else", "check-whitespace", "check-open-brace"],
-      "quotemark": [true, "single", "avoid-escape", "jsx-double"],
+      "quotemark": [true, "single", "avoid-escape"],
       "semicolon": [true, "always", "ignore-bound-class-methods"],
       "typedef-whitespace": [
         true,

@@ -33,6 +33,7 @@ import { CreateInvestmentPortfolioCommandHandler } from '../../../Contexts/Inves
 import { InvestmentPortfolioCreator } from '../../../Contexts/Investment/Portfolio/Application/Command/CreatePortfolio/InvestmentPortfolioCreator';
 import { DeleteInvestmentAllocationCommandHandler } from '../../../Contexts/Investment/Portfolio/Application/Command/DeleteAllocation/DeleteInvestmentAllocationCommandHandler';
 import { CreateInvestmentAllocationCommandHandler } from '../../../Contexts/Investment/Portfolio/Application/Command/UpsertAllocation/CreateInvestmentAllocationCommandHandler';
+import { EventBus } from '../../../Contexts/Shared/Domain/Event/EventBus';
 
 export class PortfoliosBackendApp {
   private server?: Server;
@@ -40,7 +41,7 @@ export class PortfoliosBackendApp {
   async start() {
     const port = process.env.PORT || '8000';
     this.server = new Server(port);
-    await this.registerSubscribers();
+    registerSubscribers();
     return this.server.listen();
   }
 
@@ -59,34 +60,36 @@ export class PortfoliosBackendApp {
   get httpServer() {
     return this.server?.httpServer;
   }
+}
 
-  private async registerSubscribers() {
-    const eventBus = new InMemorySyncEventBus();
+function registerSubscribers(): EventBus {
+  const eventBus = new InMemorySyncEventBus();
 
-    const inMemoryPortfolioRepo = new InMemoryInvestmentPortfolioRepository();
-    const inMemoryOrderRepo = new InMemoryInvestmentOrderRepository();
+  const inMemoryPortfolioRepo = new InMemoryInvestmentPortfolioRepository();
+  const inMemoryOrderRepo = new InMemoryInvestmentOrderRepository();
 
-    const subscribers: Array<DomainEventSubscriber<DomainEvent>> = [];
+  const subscribers: Array<DomainEventSubscriber<DomainEvent>> = [];
 
-    subscribers.push(new DeleteAllocationWhenSharesIsZeroOnAllocationUpdated(
-      new InvestmentAllocationEraser(inMemoryPortfolioRepo, eventBus)
-    ));
+  subscribers.push(new DeleteAllocationWhenSharesIsZeroOnAllocationUpdated(
+    new InvestmentAllocationEraser(inMemoryPortfolioRepo, eventBus)
+  ));
 
-    subscribers.push(new UpdateInvestmentPortfolioAllocationsOnOrderCompleted(
-      new InvestmentAllocationCreator(inMemoryPortfolioRepo, eventBus),
-      new InvestmentPortfolioFinder(inMemoryPortfolioRepo),
-    ));
+  subscribers.push(new UpdateInvestmentPortfolioAllocationsOnOrderCompleted(
+    new InvestmentAllocationCreator(inMemoryPortfolioRepo, eventBus),
+    new InvestmentPortfolioFinder(inMemoryPortfolioRepo),
+  ));
 
-    subscribers.push(new DeleteInvestmentOrdersOfPortfolioOnPortfolioCleaned(
-      new InvestmentOrdersOfPortfolioEraser(inMemoryOrderRepo),
-    ));
+  subscribers.push(new DeleteInvestmentOrdersOfPortfolioOnPortfolioCleaned(
+    new InvestmentOrdersOfPortfolioEraser(inMemoryOrderRepo),
+  ));
 
-    const domainEventMapping = new DomainEventMapping(subscribers);
+  const domainEventMapping = new DomainEventMapping(subscribers);
 
-    eventBus.setDomainEventMapping(domainEventMapping);
-    eventBus.addSubscribers(subscribers);
-    await eventBus.start();
-  }
+  eventBus.setDomainEventMapping(domainEventMapping);
+  eventBus.addSubscribers(subscribers);
+  eventBus.start();
+
+  return eventBus
 }
 
 export function prepareQueryHandlers(): QueryHandlersInformation {
@@ -111,7 +114,7 @@ export function prepareQueryHandlers(): QueryHandlersInformation {
 }
 
 export function prepareCommandHandlers(): CommandHandlersInformation {
-  const eventBus = new InMemorySyncEventBus();
+  const eventBus = registerSubscribers();
 
   const inMemoryPortfolioRepo = new InMemoryInvestmentPortfolioRepository();
   const inMemoryOrderRepo = new InMemoryInvestmentOrderRepository();

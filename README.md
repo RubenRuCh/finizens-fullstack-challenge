@@ -24,6 +24,13 @@ It will be available in http://localhost:8000. Endpoints begin with ```/api```
 make start-local-portfolios-frontend
 ```
 
+If that doesn't work (because a Webpack error):
+
+```
+cd src/Apps/portfolios/frontend && npm start
+```
+
+
 It will be available in http://localhost:3000
 
 ### Tests

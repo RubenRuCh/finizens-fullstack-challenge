@@ -34,7 +34,7 @@ export class UpdateInvestmentPortfolioAllocationsOnOrderCompleted implements Dom
   }
 
   async on(domainEvent: InvestmentOrderCompleted): Promise<void> {
-    const { aggregateId, order: orderDTO } = domainEvent;
+    const { order: orderDTO } = domainEvent;
 
     const order = InvestmentOrder.fromDTO(orderDTO);
     const allocation = await this.getAllocation(order.portfolioId, order.allocationId);
@@ -43,7 +43,7 @@ export class UpdateInvestmentPortfolioAllocationsOnOrderCompleted implements Dom
     const newAllocationShares = InvestmentOrder.newShares({ order, currentShares: currentAllocationShares });
 
     const request: CreateInvestmentAllocationRequest = {
-      portfolioId: aggregateId,
+      portfolioId: order.portfolioId.value,
       allocationId: order.allocationId.value,
       shares: newAllocationShares.value
     };

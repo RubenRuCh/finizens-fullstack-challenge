@@ -4,7 +4,6 @@ import errorHandler from 'errorhandler';
 import express, { Request, Response } from 'express';
 import Router from 'express-promise-router';
 import helmet from 'helmet';
-import cors from 'cors';
 import * as http from 'http';
 import httpStatus from 'http-status';
 import Logger from '../../../Contexts/Shared/Domain/Logger';
@@ -22,22 +21,12 @@ export class Server {
       this.logger = new WinstonLogger();
       this.express = express();
 
-
-      const envOrigins = {
-        prod: [
-
-        ],
-        dev: [
-
-        ],
-        test: [
-          'http://localhost:3000',
-        ],
-      };
-
-      this.express.use(cors({
-          origin: envOrigins[process.env.NODE_ENV as ('prod' | 'dev' | 'test') || 'test'],
-      }));
+      this.express.use(function(_req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, GET, DELETE, OPTIONS');
+        next();
+     });
 
       this.express.use(bodyParser.json());
       this.express.use(bodyParser.urlencoded({ extended: true }));

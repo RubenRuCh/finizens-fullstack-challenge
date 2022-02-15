@@ -3,6 +3,8 @@ import { DomainEvent } from '../../../../../Shared/Domain/Event/DomainEvent';
 import { InvestmentPortfolioEvent, InvestmentPortfolioEventBody } from './InvestmentPortfolioEvent';
 
 export class InvestmentPortfolioUpdated extends InvestmentPortfolioEvent {
+    static readonly EVENT_NAME = `${InvestmentPortfolioEvent.BASE_EVENT_NAME}.updated`;
+
     constructor({
         portfolio,
         eventId,

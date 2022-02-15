@@ -3,6 +3,8 @@ import { DomainEvent } from '../../../../../Shared/Domain/Event/DomainEvent';
 import { InvestmentAllocationDTO } from '../../Model/Allocation/InvestmentAllocationDTO';
 
 export class InvestmentAllocationDeleted extends InvestmentAllocationEvent {
+    static readonly EVENT_NAME = `${InvestmentAllocationEvent.BASE_EVENT_NAME}.deleted`;
+
     constructor({
         aggregateId,
         allocation,

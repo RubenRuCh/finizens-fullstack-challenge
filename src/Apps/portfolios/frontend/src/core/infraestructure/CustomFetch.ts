@@ -21,7 +21,7 @@ function postFetch<T>(url: string, body: Record<string, unknown>): Promise<T> {
 function patchFetch<T>(url: string, body: Record<string, unknown>): Promise<T> {
     return wrappedFetch(url, {
         body,
-        method: 'patch',
+        method: 'PATCH',
     }) as Promise<T>;
 }
 
@@ -46,7 +46,7 @@ export async function wrappedFetch<T>(
         body,
         token,
     }: {
-        method: 'post' | 'put' | 'patch' | 'get' | 'delete';
+        method: 'post' | 'put' | 'PATCH' | 'get' | 'delete';
         body?: Record<string, unknown>;
         token?: string;
     },

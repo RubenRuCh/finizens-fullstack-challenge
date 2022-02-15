@@ -2,6 +2,7 @@ import { NonCompletedOrdersFromSelectedPortfolioStore, PortfoliosStore, Selected
 import { InvestmentOrderDTO } from '../../../../../../Contexts/Investment/Order/Domain/Model/InvestmentOrderDTO';
 import { InvestmentPortfolioDTO } from './../../../../../../Contexts/Investment/Portfolio/Domain/Model/Portfolio/InvestmentPortfolioDTO';
 import { CustomFetch } from './CustomFetch';
+import { REQ_STATUS } from '../../framework/RequestStatus';
 
 export class ApiPortfoliosService {
 
@@ -18,8 +19,13 @@ export class ApiPortfoliosService {
     };
 
     public async loadPortfolios(): Promise<void> {
+        const isResolved = PortfoliosStore.get().status === REQ_STATUS.RESOLVED;
+
         try {
-            PortfoliosStore.setPending();
+            if (!isResolved) {
+                PortfoliosStore.setPending();
+            }
+
             const loadedPortfolios = await this.getPortfolios();
             PortfoliosStore.setResolved(loadedPortfolios);
 

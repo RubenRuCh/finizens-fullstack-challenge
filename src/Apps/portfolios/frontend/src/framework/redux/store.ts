@@ -45,6 +45,8 @@ export const store = createStore(
 );
 
 // Build stores
+
+/* Domain stores */
 export const PortfoliosStore = PortfoliosStorePrebuilt.buildStore(
     store,
     state => state.domainStore.portfolios,
@@ -60,6 +62,7 @@ export const NonCompletedOrdersFromSelectedPortfolioStore = NonCompletedOrdersFr
     state => state.domainStore.nonCompletedOrdersFromSelectedPortfolio,
 );
 
+/* UI stores */
 export const SelectedPortfolioIdStore = SelectedPortfolioIdStorePrebuilt.buildStore(
     store,
     state => state.uiStore.selectedPortfolioId,

@@ -1,28 +1,252 @@
 {
     "env": {
-      "browser": true,
-      "es2021": true
+        "browser": true,
+        "node": true
     },
-    "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:@typescript-eslint/recommended",
-    ],
     "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
     "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "ecmaVersion": 13,
-      "sourceType": "module"
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
     },
-    "plugins": ["react", "react-hooks", "@typescript-eslint"],
     "rules": {
-      "react-hooks/exhaustive-deps": "error",
-    },
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
+        "object-curly-newline": [
+            "error",
+            {
+                "multiline": true,
+                "consistent": true
+            }
+        ],
+        "@typescript-eslint/no-explicit-any": "error",
+        "no-useless-return": "error",
+        "no-console": [
+            1,
+            {
+                "allow": [
+                    "info",
+                    "warn"
+                ]
+            }
+        ],
+        "eqeqeq": 2,
+        "curly": 2,
+        "default-param-last": 2,
+        "no-unused-expressions": 2,
+        "@typescript-eslint/no-namespace": 0,
+        "@typescript-eslint/no-empty-function": [
+            "error",
+            {
+                "allow": [
+                    "constructors",
+                    "arrowFunctions"
+                ]
+            }
+        ],
+        "no-empty-function": [
+            "error",
+            {
+                "allow": [
+                    "constructors",
+                    "arrowFunctions"
+                ]
+            }
+        ],
+        "no-multi-spaces": 2,
+        "no-else-return": [
+            "error",
+            {
+                "allowElseIf": false
+            }
+        ],
+        "space-before-blocks": [
+            2,
+            {
+                "functions": "always",
+                "keywords": "always",
+                "classes": "always"
+            }
+        ],
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1,
+                "MemberExpression": 1,
+                "ArrayExpression": 1,
+                "ObjectExpression": 1
+            }
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "array-bracket-spacing": [
+            "error",
+            "never",
+            {
+                "arraysInArrays": false,
+                "objectsInArrays": false,
+                "singleValue": false
+            }
+        ],
+        "array-element-newline": [
+            "error",
+            "consistent"
+        ],
+        "arrow-spacing": [
+            2,
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "block-spacing": [
+            "error",
+            "always"
+        ],
+        "brace-style": [
+            "error"
+        ],
+        "comma-dangle": [
+            "error",
+            "always-multiline"
+        ],
+        "comma-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": true
+            }
+        ],
+        "comma-style": [
+            "error",
+            "last"
+        ],
+        "computed-property-spacing": [
+            "error",
+            "never"
+        ],
+        "eol-last": [
+            "error",
+            "always"
+        ],
+        "func-call-spacing": [
+            "error",
+            "never"
+        ],
+        "func-style": [
+            "error",
+            "declaration",
+            {
+                "allowArrowFunctions": true
+            }
+        ],
+        "function-call-argument-newline": [
+            "error",
+            "consistent"
+        ],
+        "function-paren-newline": [
+            "error",
+            "multiline"
+        ],
+        "jsx-quotes": [
+            "error",
+            "prefer-single"
+        ],
+        "implicit-arrow-linebreak": [
+            "error",
+            "beside"
+        ],
+        "key-spacing": [
+            "error",
+            {
+                "beforeColon": false,
+                "afterColon": true
+            }
+        ],
+        "keyword-spacing": [
+            "error",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "no-debugger": "warn",
+        "no-lonely-if": "error",
+        "no-mixed-spaces-and-tabs": "error",
+        "no-multi-assign": "error",
+        "no-multiple-empty-lines": [
+            "error",
+            {
+                "max": 1,
+                "maxEOF": 1
+            }
+        ],
+        "no-trailing-spaces": "error",
+        "no-whitespace-before-property": "error",
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "object-property-newline": [
+            "error"
+        ],
+        "padded-blocks": [
+            "error",
+            {
+                "classes": "always",
+                "blocks": "never",
+                "switches": "never"
+            },
+            {
+                "allowSingleLineBlocks": true
+            }
+        ],
+        "padding-line-between-statements": [
+            "error",
+            {
+                "blankLine": "always",
+                "prev": "*",
+                "next": "return"
+            }
+        ],
+        "quote-props": [
+            "error",
+            "as-needed"
+        ],
+        "arrow-body-style": [
+            "error",
+            "as-needed",
+            {
+                "requireReturnForObjectLiteral": false
+            }
+        ],
+        "no-unreachable": "off",
+        "max-len": [
+            1,
+            {
+                "code": 140,
+                "ignorePattern": "^import\\s.+\\sfrom\\s.+;$"
+            }
+        ]
     }
-  }
+}

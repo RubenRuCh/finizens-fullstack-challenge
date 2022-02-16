@@ -3,6 +3,8 @@ import { InvestmentAllocationDTO } from '../../Model/Allocation/InvestmentAlloca
 import { InvestmentAllocationEvent, InvestmentAllocationEventBody } from './InvestmentAllocationEvent';
 
 export class InvestmentAllocationUpdated extends InvestmentAllocationEvent {
+    static readonly EVENT_NAME = `${InvestmentAllocationEvent.BASE_EVENT_NAME}.updated`;
+
     constructor({
         aggregateId,
         allocation,

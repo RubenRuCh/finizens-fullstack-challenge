@@ -17,6 +17,12 @@ services:
     command: bash -c "npm run build && npm run start:portfolios:backend"
     ports:
       - ${PORTFOLIOS_BACK_PORT}:${PORTFOLIOS_BACK_PORT}
+
+  portfolios_frontend:
+    <<: *default-app
+    command: bash -c "npm run start --prefix ./src/Apps/portfolios/frontend"
+    ports:
+      - ${PORTFOLIOS_FRONT_PORT}:${PORTFOLIOS_FRONT_PORT}
  
 volumes:
   node_modules:

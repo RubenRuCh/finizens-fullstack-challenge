@@ -1,10 +1,10 @@
+import { InvestmentOrderDTO } from './../../../Domain/Model/InvestmentOrderDTO';
 import { QueryResponse } from './../../../../../Shared/Domain/CQRS/Query/QueryResponse';
-import { InvestmentOrder } from './../../../Domain/Model/InvestmentOrder';
 
 export class SearchInvestmentOrdersResponse implements QueryResponse {
-  readonly orders: InvestmentOrder[];
+  readonly orders: InvestmentOrderDTO[];
 
-  constructor(orders: InvestmentOrder[]) {
+  constructor(orders: InvestmentOrderDTO[]) {
     this.orders = orders;
   }
 }

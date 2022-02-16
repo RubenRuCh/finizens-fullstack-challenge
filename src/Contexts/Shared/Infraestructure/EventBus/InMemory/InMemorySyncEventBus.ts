@@ -33,7 +33,7 @@ export class InMemorySyncEventBus implements EventBus {
 
   addSubscribers(subscribers: Array<DomainEventSubscriber<DomainEvent>>) {
     subscribers.map(subscriber =>
-      subscriber.subscribedTo().map(event => this.subscribe(event.EVENT_NAME!, subscriber))
+      subscriber.subscribedTo().map(event => this.subscribe(event.EVENT_NAME, subscriber))
     );
   }
 

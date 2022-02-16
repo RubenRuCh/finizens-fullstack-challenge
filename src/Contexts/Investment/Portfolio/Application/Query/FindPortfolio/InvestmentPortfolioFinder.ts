@@ -13,6 +13,6 @@ export class InvestmentPortfolioFinder {
       throw new InvestmentPortfolioNotFoundException(portfolioId.value);
     }
 
-    return new FindInvestmentPortfolioResponse(portfolio);
+    return new FindInvestmentPortfolioResponse(portfolio.toDTO());
   }
 }

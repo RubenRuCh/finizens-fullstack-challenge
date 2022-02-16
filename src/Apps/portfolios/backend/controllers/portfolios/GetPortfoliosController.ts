@@ -19,8 +19,7 @@ export class GetPortfoliosController {
         const query = new SearchInvestmentPortfoliosQuery();
         const queryResponse: SearchInvestmentPortfoliosResponse = await this.queryBus.ask(query);
 
-        const portfolioDTOs = queryResponse.portfolios.map(portfolio => portfolio.toDTO());
-        res.status(httpStatus.OK).send(portfolioDTOs);
+        res.status(httpStatus.OK).send(queryResponse.portfolios);
     }
 
 }

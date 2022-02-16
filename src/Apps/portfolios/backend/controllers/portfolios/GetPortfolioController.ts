@@ -21,8 +21,7 @@ export class GetPortfolioController {
         const query = new FindInvestmentPortfolioByIdQuery(customReq.getRouteParam('portfolioId'));
         const queryResponse: FindInvestmentPortfolioResponse = await this.queryBus.ask(query);
 
-        const portfolioDTO = queryResponse.portfolio.toDTO();
-        res.status(httpStatus.OK).send(portfolioDTO);
+        res.status(httpStatus.OK).send(queryResponse.portfolio);
     }
 
 }

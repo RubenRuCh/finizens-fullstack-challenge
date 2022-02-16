@@ -50,6 +50,6 @@ describe('NonCompletedInvestmentOrderSearcher', () => {
     const response = await handler.handle(query);
 
     repository.assertLastSearchedPortfolioIdIs(portfolio.id);
-    expect(response.orders).toEqual([firstPendingOrder, secondPendingOrder]);
+    expect(response.orders).toEqual([firstPendingOrder.toDTO(), secondPendingOrder.toDTO()]);
   });
 });

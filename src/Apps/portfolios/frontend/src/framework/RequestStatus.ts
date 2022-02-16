@@ -1,0 +1,6 @@
+export enum REQ_STATUS {
+    PENDING = 'PENDING',
+    RESOLVED = 'RESOLVED',
+    ERROR = 'ERROR',
+    UNINITIALIZED = 'UNINITIALIZED',
+}

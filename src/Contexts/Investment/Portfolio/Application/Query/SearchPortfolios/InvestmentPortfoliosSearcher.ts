@@ -20,6 +20,6 @@ export class InvestmentPortfoliosSearcher {
 
     const portfolios = await this.repository.search(criteria);
 
-    return new SearchInvestmentPortfoliosResponse(portfolios);
+    return new SearchInvestmentPortfoliosResponse(portfolios.map(portfolio => portfolio.toDTO()));
   }
 }

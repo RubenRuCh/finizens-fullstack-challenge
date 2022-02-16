@@ -8,15 +8,10 @@ import { InvestmentOrderRepository } from '../../Domain/Model/InvestmentOrderRep
 import { InvestmentOrderId } from '../../Domain/ValueObject/InvestmentOrderId';
 import { initialPortfolioId } from '../../../Portfolio/Infraestructure/Repository/InMemoryInvestmentPortfolioRepository';
 
-const initialPendingSellOrder = InvestmentOrderMother.withPortfolioId(InvestmentOrderMother.pendingSell(), initialPortfolioId);
-const initialCompletedSellOrder = InvestmentOrderMother.withPortfolioId(InvestmentOrderMother.completedSell(), initialPortfolioId);
-
 const initialPendingBuyOrder = InvestmentOrderMother.withPortfolioId(InvestmentOrderMother.pendingBuy(), initialPortfolioId);
 const initialCompletedBuyOrder = InvestmentOrderMother.withPortfolioId(InvestmentOrderMother.completedBuy(), initialPortfolioId);
 
 const initialOrders = [
-    initialPendingSellOrder,
-    initialCompletedSellOrder,
     initialPendingBuyOrder,
     initialCompletedBuyOrder
 ];

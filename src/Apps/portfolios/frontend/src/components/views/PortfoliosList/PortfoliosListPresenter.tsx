@@ -42,6 +42,7 @@ export function PortfoliosListPresenter(): JSX.Element {
                 onSelectPortfolio={onLocalSelectPortfolio}
                 onNewPortfolio={onNewPortfolio}
                 onCompleteOrder={onCompleteOrder}
+                onCreateOrder={onCreateOrder}
             />
         </Skeleton>
     );
@@ -53,4 +54,8 @@ const onNewPortfolio = async (portfolio: InvestmentPortfolioDTO): Promise<void> 
 
 const onCompleteOrder = async (order: InvestmentOrderDTO): Promise<void> => {
     await new ApiPortfoliosService().patchOrder(order);
+};
+
+const onCreateOrder = async (order: InvestmentOrderDTO): Promise<void> => {
+    await new ApiPortfoliosService().createOrder(order);
 };

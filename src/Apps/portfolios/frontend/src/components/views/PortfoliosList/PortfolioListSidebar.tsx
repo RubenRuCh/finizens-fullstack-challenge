@@ -1,9 +1,9 @@
 import { Button, Center, chakra, Stack } from '@chakra-ui/react';
 import { InvestmentPortfolioDTO } from '../../../../../../../Contexts/Investment/Portfolio/Domain/Model/Portfolio/InvestmentPortfolioDTO';
-import { v4 } from 'uuid';
 import { AddIcon } from '@chakra-ui/icons';
 import blueLogo from '../../../assets/img/blue_logo.svg';
 import { useCommand } from '../../../framework/hooks/useCommand';
+import { IdGenerator } from '../../../core/domain/IdGenerator';
 
 export function PortfolioListSidebar({
     portfolios,
@@ -18,7 +18,7 @@ export function PortfolioListSidebar({
 
     const onLocalNewPortfolio = () => {
         const randomPortfolio: InvestmentPortfolioDTO = {
-            id: v4(),
+            id: IdGenerator.random(),
             allocations: [],
         };
 
@@ -53,7 +53,6 @@ export function PortfolioListSidebar({
                 p={5}
                 justifyContent='start'
                 overflow='auto'
-                maxHeight='60vh'
 
                 css={{
                     '&::-webkit-scrollbar': {

@@ -1,4 +1,4 @@
-import { Button, Skeleton, Table, TableCaption, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import { Badge, Button, Skeleton, Table, TableCaption, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 import { InvestmentPortfolioDTO } from '../../../../../../../Contexts/Investment/Portfolio/Domain/Model/Portfolio/InvestmentPortfolioDTO';
 import { CheckIcon } from '@chakra-ui/icons';
 import { useCommand } from '../../../framework/hooks/useCommand';
@@ -24,8 +24,8 @@ export function PortfolioListOrders({
 
     return (
         <Skeleton isLoaded={!isLoadingOrders}>
-            <Table variant='striped' colorScheme='twitter' color='gray.800'>
-                <TableCaption color='gray.800'>Non-completed orders of portfolio</TableCaption>
+            <Table variant='striped' colorScheme='twitter'>
+                <TableCaption>Non-completed orders of portfolio</TableCaption>
                 <Thead>
                     <Tr>
                         <Th>Id</Th>
@@ -41,8 +41,16 @@ export function PortfolioListOrders({
                             <Tr key={order.id}>
                                 <Td>{order.id}</Td>
                                 <Td>{order.allocationId}</Td>
-                                <Td>{order.shares}</Td>
-                                <Td>{order.type}</Td>
+                                <Td>
+                                    <Badge colorScheme='purple'>
+                                        {order.shares}
+                                    </Badge>
+                                </Td>
+                                <Td>
+                                    <Badge colorScheme={order.type === 'buy' ? 'green' : 'red'}>
+                                        {order.type}
+                                    </Badge>
+                                </Td>
                                 <Td>
                                     <Button
                                         isLoading={isPending}

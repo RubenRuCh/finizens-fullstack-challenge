@@ -1,21 +1,22 @@
 {
-    "compilerOptions": {
-      "module": "commonjs",
-      "esModuleInterop": true,
-      "target": "es6",
-      "noImplicitAny": true,
-      "moduleResolution": "node",
-      "sourceMap": true,
-      "rootDir": ".",
-      "strict": true,
-      "noEmit": false,
-      "resolveJsonModule": true,
-      "noUnusedLocals": true,
-      "outDir": "./dist"
-    },
-    "include": [
-      "src/**/**.ts"
-    ],
-    "exclude": ["node_modules"]
-  }
-  
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist/",
+
+    "esModuleInterop": true,
+    "target": "es6",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "noUnusedLocals": true,
+  },
+  "files": [],
+  "references": [
+    { "path": "./src/Contexts" },
+    { "path": "./src/Apps/portfolios/backend" },
+    { "path": "./src/Apps/portfolios/frontend" }
+  ]
+}

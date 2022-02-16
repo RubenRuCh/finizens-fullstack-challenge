@@ -20,6 +20,14 @@ export class Server {
       this.port = port;
       this.logger = new WinstonLogger();
       this.express = express();
+
+      this.express.use(function(_req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, GET, DELETE, OPTIONS');
+        next();
+     });
+
       this.express.use(bodyParser.json());
       this.express.use(bodyParser.urlencoded({ extended: true }));
       this.express.use(helmet.xssFilter());
@@ -31,6 +39,8 @@ export class Server {
       router.use(errorHandler());
       this.express.use(router);
       registerRoutes(router);
+
+
 
       router.use((err: Error, _req: Request, res: Response, _next: Function) => {
         this.logger.error(err);

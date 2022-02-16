@@ -14,4 +14,12 @@ export class InvestmentOrderType extends ValueObject<InvestmentOrderTypeValue> {
     public get isSell(): boolean {
         return this.value === 'sell';
     }
+
+    public static newBuy(): InvestmentOrderType {
+        return new InvestmentOrderType('buy');
+    }
+
+    public static newSell(): InvestmentOrderType {
+        return new InvestmentOrderType('sell');
+    }
 }

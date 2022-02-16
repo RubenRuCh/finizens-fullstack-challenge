@@ -3,6 +3,8 @@ import { InvestmentOrderDTO } from '../../Model/InvestmentOrderDTO';
 import { InvestmentOrderEvent, InvestmentOrderEventBody } from './InvestmentOrderEvent';
 
 export class InvestmentOrderCreated extends InvestmentOrderEvent {
+    static readonly EVENT_NAME = `${InvestmentOrderEvent.BASE_EVENT_NAME}.created`;
+
     constructor({
         order,
         eventId,

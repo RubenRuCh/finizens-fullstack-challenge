@@ -30,6 +30,10 @@ export class InvestmentOrderEvent extends DomainEvent {
         this.eventName = buildedEventName;
     }
 
+    get EVENT_NAME(): string {
+        return this.eventName;
+    }
+
     toPrimitive(): InvestmentOrderEventBody {
         const { order, eventName } = this;
 
